@@ -1,0 +1,48 @@
+(setq inhibit-startup-message t)
+
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(TeX-view-program-selection (quote (((output-dvi style-pstricks) "Evince") (output-dvi "Evince") (output-pdf "Evince") (output-html "Evince"))))
+ '(initial-buffer-choice nil)
+ '(initial-scratch-message nil))
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )
+
+(load "auctex.el" nil t t)
+(load "preview-latex.el" nil t t)
+
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq-default TeX-master nil)
+(setq TeX-PDF-mode t)
+
+(setq TeX-view-program-list '(("Evince" "evince %o"))
+      TeX-view-program-selection '((output-pdf "Evince")))
+
+(defun toggle-fullscreen ()
+  (interactive)
+  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+	    		 '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
+  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+	    		 '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
+)
+(toggle-fullscreen)
+
+
+
+
+(add-hook 'LaTeX-mode-hook
+           (function (lambda ()
+                       (paren-toggle-matching-quoted-paren 1)
+                       (paren-toggle-matching-paired-delimiter 1))))
+
+ (add-hook 'c-mode-common-hook
+           (function (lambda ()
+                        (paren-toggle-open-paren-context 1))))
