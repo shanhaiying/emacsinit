@@ -402,7 +402,7 @@
                  plain-tex-mode
                  latex-mode
                  )
-  (sp-local-pair "\\[" "\\]" :actions '(insert))
+  (sp-local-pair "\\[" "\\]" :actions '(insert wrap))
   (sp-local-pair "$" "$")
 ;  (sp-local-pair "\{" nil :actions :rem)
   (sp-local-pair "\\{" "\\}" :actions '(insert))
