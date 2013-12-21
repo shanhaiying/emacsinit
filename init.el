@@ -3,7 +3,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(TeX-view-program-list (quote (("EvinceDbus" auctex-evince-view))))
+ '(TeX-source-correlate-method (quote synctex))
+ '(TeX-source-correlate-mode t)
+ '(TeX-source-correlate-start-server t)
+ '(TeX-view-program-list (quote (("Okular sync" "okular --unique %o#src:%n`pwd`/./%b"))))
+ '(TeX-view-program-selection (quote ((output-pdf "Okular sync"))))
  '(custom-safe-themes (quote ("f3ceb7a30f6501c1093bc8ffdf755fe5ddff3a85437deebf3ee8d7bed8991711" "8eef22cd6c122530722104b7c82bc8cdbb690a4ccdd95c5ceec4f3efa5d654f5" "2b5aa66b7d5be41b18cc67f3286ae664134b95ccc4a86c9339c886dfd736132d" default)))
  '(initial-buffer-choice nil)
  '(initial-scratch-message nil)
@@ -124,8 +128,8 @@
 	    'highlight-parentheses-mode
 	    ))
 
-(setq TeX-view-program-list '(("Evince" "evince %o"))
-      TeX-view-program-selection '((output-pdf "Evince")))
+;; (setq TeX-view-program-list '(("Evince" "evince %o"))
+;;       TeX-view-program-selection '((output-pdf "Evince")))
 
 
  (add-hook 'LaTeX-mode-hook
@@ -160,52 +164,52 @@
       absolute-path))
 
 
-; SyncTeX forward search - based on http://tex.stackexchange.com/a/46157
+;; ; SyncTeX forward search - based on http://tex.stackexchange.com/a/46157
 
-;; universal time, need by evince
-(defun utime ()
-  (let ((high (nth 0 (current-time)))
-        (low (nth 1 (current-time))))
-   (+ (* high (lsh 1 16) ) low)))
+;; ;; universal time, need by evince
+;; (defun utime ()
+;;   (let ((high (nth 0 (current-time)))
+;;         (low (nth 1 (current-time))))
+;;    (+ (* high (lsh 1 16) ) low)))
 
-;; Forward search.
-;; Adapted from http://dud.inf.tu-dresden.de/~ben/evince_synctex.tar.gz
-(defun auctex-evince-forward-sync (pdffile texfile line)
-  (let ((dbus-name
-     (dbus-call-method :session
-               "org.gnome.evince.Daemon"  ; service
-               "/org/gnome/evince/Daemon" ; path
-               "org.gnome.evince.Daemon"  ; interface
-               "FindDocument"
-               (urlify pdffile)
-               t     ; Open a new window if the file is not opened.
-               )))
-    (dbus-call-method :session
-          dbus-name
-          "/org/gnome/evince/Window/0"
-          "org.gnome.evince.Window"
-          "SyncView"
-          (urlify-escape-only texfile)
-          (list :struct :int32 line :int32 1)
-  (utime))))
+;; ;; Forward search.
+;; ;; Adapted from http://dud.inf.tu-dresden.de/~ben/evince_synctex.tar.gz
+;; (defun auctex-evince-forward-sync (pdffile texfile line)
+;;   (let ((dbus-name
+;;      (dbus-call-method :session
+;;                "org.gnome.evince.Daemon"  ; service
+;;                "/org/gnome/evince/Daemon" ; path
+;;                "org.gnome.evince.Daemon"  ; interface
+;;                "FindDocument"
+;;                (urlify pdffile)
+;;                t     ; Open a new window if the file is not opened.
+;;                )))
+;;     (dbus-call-method :session
+;;           dbus-name
+;;           "/org/gnome/evince/Window/0"
+;;           "org.gnome.evince.Window"
+;;           "SyncView"
+;;           (urlify-escape-only texfile)
+;;           (list :struct :int32 line :int32 1)
+;;   (utime))))
 
-(defun auctex-evince-view ()
-  (let ((pdf (file-truename (concat default-directory
-                    (TeX-master-file (TeX-output-extension)))))
-    (tex (buffer-file-name))
-    (line (line-number-at-pos)))
-    (auctex-evince-forward-sync pdf tex line)))
+;; (defun auctex-evince-view ()
+;;   (let ((pdf (file-truename (concat default-directory
+;;                     (TeX-master-file (TeX-output-extension)))))
+;;     (tex (buffer-file-name))
+;;     (line (line-number-at-pos)))
+;;     (auctex-evince-forward-sync pdf tex line)))
 
-;; New view entry: Evince via D-bus.
-(setq TeX-view-program-list '())
-(add-to-list 'TeX-view-program-list
-         '("EvinceDbus" auctex-evince-view))
+;; ;; New view entry: Evince via D-bus.
+;; (setq TeX-view-program-list '())
+;; (add-to-list 'TeX-view-program-list
+;;          '("EvinceDbus" auctex-evince-view))
 
-;; Prepend Evince via D-bus to program selection list
-;; overriding other settings for PDF viewing.
-(setq TeX-view-program-selection '())
-(add-to-list 'TeX-view-program-selection
-         '(output-pdf "EvinceDbus"))
+;; ;; Prepend Evince via D-bus to program selection list
+;; ;; overriding other settings for PDF viewing.
+;; (setq TeX-view-program-selection '())
+;; (add-to-list 'TeX-view-program-selection
+;;          '(output-pdf "EvinceDbus"))
 
 
 (fset 'insert-twosided-brackets
