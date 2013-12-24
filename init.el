@@ -9,7 +9,7 @@
  '(TeX-view-program-list (quote (("Okular sync" "okular --unique %o#src:%n`pwd`/./%b"))))
  '(TeX-view-program-selection (quote ((output-pdf "Okular sync"))))
  '(custom-safe-themes (quote ("0e121ff9bef6937edad8dfcff7d88ac9219b5b4f1570fd1702e546a80dba0832" "968d1ad07c38d02d2e5debffc5638332696ac41af7974ade6f95841359ed73e3" "543976df2de12eb2ac235c79c7bc1dac6c58f4a34ae6f72237d6e70d8384f37a" "1affe85e8ae2667fb571fc8331e1e12840746dae5c46112d5abb0c3a973f5f5a" "f41fd682a3cd1e16796068a2ca96e82cfd274e58b978156da0acce4d56f2b0d5" "9bac44c2b4dfbb723906b8c491ec06801feb57aa60448d047dbfdbd1a8650897" "e53cc4144192bb4e4ed10a3fa3e7442cae4c3d231df8822f6c02f1220a0d259a" "51bea7765ddaee2aac2983fac8099ec7d62dff47b708aa3595ad29899e9e9e44" "de2c46ed1752b0d0423cde9b6401062b67a6a1300c068d5d7f67725adc6c3afb" "ae8d0f1f36460f3705b583970188e4fbb145805b7accce0adb41031d99bd2580" "978ff9496928cc94639cb1084004bf64235c5c7fb0cfbcc38a3871eb95fa88f6" "405fda54905200f202dd2e6ccbf94c1b7cc1312671894bc8eca7e6ec9e8a41a2" "41b6698b5f9ab241ad6c30aea8c9f53d539e23ad4e3963abff4b57c0f8bf6730" "4eaad15465961fd26ef9eef3bee2f630a71d8a4b5b0a588dc851135302f69b16" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "f3ceb7a30f6501c1093bc8ffdf755fe5ddff3a85437deebf3ee8d7bed8991711" "8eef22cd6c122530722104b7c82bc8cdbb690a4ccdd95c5ceec4f3efa5d654f5" "2b5aa66b7d5be41b18cc67f3286ae664134b95ccc4a86c9339c886dfd736132d" default)))
- '(fringe-mode (quote (0)) nil (fringe))
+; '(fringe-mode (quote (0)) nil (fringe))
  '(initial-buffer-choice nil)
  '(initial-scratch-message nil)
  '(mode-require-final-newline nil)
@@ -48,6 +48,20 @@
 (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
 (autoload 'color-theme-approximate-on "color-theme-approximate")
 (color-theme-approximate-on)
+
+;; (unless window-system
+;;   (add-hook 'linum-before-numbering-hook
+;; 	    (lambda ()
+;; 	      (setq-local linum-format-fmt
+;; 			  (let ((w (length (number-to-string
+;; 					    (count-lines (point-min) (point-max))))))
+;; 			    (concat "%" (number-to-string w) "d "))))))
+;; (defun linum-format-func (line)
+;;   (concat
+;;    (propertize (format linum-format-fmt line) 'face 'linum)))
+;;    ;(propertize " " 'face 'mode-line)))
+;; (unless window-system
+;;   (setq linum-format 'linum-format-func))
 
 
 (custom-set-faces
