@@ -45,8 +45,6 @@
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
-(autoload 'color-theme-approximate-on "color-theme-approximate")
-(color-theme-approximate-on)
 
 
 (custom-set-faces
