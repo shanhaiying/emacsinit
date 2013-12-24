@@ -29,11 +29,10 @@
 (add-to-list 'load-path "/home/xin/.emacs.d/yasnippet-master/")
 
 (require 'package)
-(add-to-list 'package-archives
-  '("melpa" . "http://melpa.milkbox.net/packages/") t)
-;; (setq package-archives '(("ELPA" . "http://tromey.com/elpa/") 
-;;                           ("gnu" . "http://elpa.gnu.org/packages/")
-;;                           ("marmalade" . "http://marmalade-repo.org/packages/")))
+(add-to-list 'package-archives '("marmalade"
+	     . "http://marmalade-repo.org/packages/")) 
+(add-to-list 'package-archives '("melpa"
+	     . "http://melpa.milkbox.net/packages/"))
 
 
 (setq default-cursor-type 'bar)
@@ -48,20 +47,6 @@
 (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
 (autoload 'color-theme-approximate-on "color-theme-approximate")
 (color-theme-approximate-on)
-
-;; (unless window-system
-;;   (add-hook 'linum-before-numbering-hook
-;; 	    (lambda ()
-;; 	      (setq-local linum-format-fmt
-;; 			  (let ((w (length (number-to-string
-;; 					    (count-lines (point-min) (point-max))))))
-;; 			    (concat "%" (number-to-string w) "d "))))))
-;; (defun linum-format-func (line)
-;;   (concat
-;;    (propertize (format linum-format-fmt line) 'face 'linum)))
-;;    ;(propertize " " 'face 'mode-line)))
-;; (unless window-system
-;;   (setq linum-format 'linum-format-func))
 
 
 (custom-set-faces
@@ -181,53 +166,6 @@
       (concat "file://" (urlify-escape-only absolute-path))
       absolute-path))
 
-
-;; ; SyncTeX forward search - based on http://tex.stackexchange.com/a/46157
-
-;; ;; universal time, need by evince
-;; (defun utime ()
-;;   (let ((high (nth 0 (current-time)))
-;;         (low (nth 1 (current-time))))
-;;    (+ (* high (lsh 1 16) ) low)))
-
-;; ;; Forward search.
-;; ;; Adapted from http://dud.inf.tu-dresden.de/~ben/evince_synctex.tar.gz
-;; (defun auctex-evince-forward-sync (pdffile texfile line)
-;;   (let ((dbus-name
-;;      (dbus-call-method :session
-;;                "org.gnome.evince.Daemon"  ; service
-;;                "/org/gnome/evince/Daemon" ; path
-;;                "org.gnome.evince.Daemon"  ; interface
-;;                "FindDocument"
-;;                (urlify pdffile)
-;;                t     ; Open a new window if the file is not opened.
-;;                )))
-;;     (dbus-call-method :session
-;;           dbus-name
-;;           "/org/gnome/evince/Window/0"
-;;           "org.gnome.evince.Window"
-;;           "SyncView"
-;;           (urlify-escape-only texfile)
-;;           (list :struct :int32 line :int32 1)
-;;   (utime))))
-
-;; (defun auctex-evince-view ()
-;;   (let ((pdf (file-truename (concat default-directory
-;;                     (TeX-master-file (TeX-output-extension)))))
-;;     (tex (buffer-file-name))
-;;     (line (line-number-at-pos)))
-;;     (auctex-evince-forward-sync pdf tex line)))
-
-;; ;; New view entry: Evince via D-bus.
-;; (setq TeX-view-program-list '())
-;; (add-to-list 'TeX-view-program-list
-;;          '("EvinceDbus" auctex-evince-view))
-
-;; ;; Prepend Evince via D-bus to program selection list
-;; ;; overriding other settings for PDF viewing.
-;; (setq TeX-view-program-selection '())
-;; (add-to-list 'TeX-view-program-selection
-;;          '(output-pdf "EvinceDbus"))
 
 
 (fset 'insert-twosided-brackets
