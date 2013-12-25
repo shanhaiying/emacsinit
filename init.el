@@ -211,7 +211,7 @@
 ;(fset 'insert-bigbraces
 ;   [?\\ ?l ?e ?f ?t ?\\ ?\{ "\{" ?\\ ?r ?i ?g ?h ?t ?\\ ?\} left left left left left left left left])
 (fset 'insert-bigbraces
-      "\\left\\{\\right\\\C-b\C-b\C-b\C-b\C-b\C-b\C-b")
+      "\\left\\{\\right\C-b\C-b\C-b\C-b\C-b\C-b")
 (fset 'insert-textit
    [?\\ ?t ?e ?x ?t ?i ?t ?\{ ?\} left])
 (fset 'insert-text
