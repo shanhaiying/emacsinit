@@ -16,7 +16,7 @@
  '(popwin:popup-window-position (quote bottom))
  '(preview-scale-function 1.5)
  '(require-final-newline nil))
-
+(setq default-frame-alist '((cursor-color . "Gold")))
 
 (scroll-bar-mode 0)
 (menu-bar-mode 0)
@@ -119,7 +119,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-; (load "auctex.el" nil t t)
+(load "auctex.el" nil t t)
 ; (load "preview-latex.el" nil t t)
 
 (setq TeX-auto-save t)
@@ -414,3 +414,18 @@
 ;;----------------------------------------------------------
 ;; ---- END YASNIPPET ----
 ;;----------------------------------------------------------
+
+;;;;;;;;;;;;;;;;;;;;  Transparency  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;(set-frame-parameter (selected-frame) 'alpha '(<active> [<inactive>]))
+(set-frame-parameter (selected-frame) 'alpha '(85 50))
+(add-to-list 'default-frame-alist '(alpha 100 100))
+(eval-when-compile (require 'cl))
+ (defun toggle-transparency ()
+   (interactive)
+   (if (/=
+        (cadr (frame-parameter nil 'alpha))
+        100)
+       (set-frame-parameter nil 'alpha '(100 100))
+     (set-frame-parameter nil 'alpha '(80 50))))
+ (global-set-key (kbd "C-c t") 'toggle-transparency)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
