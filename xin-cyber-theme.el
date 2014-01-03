@@ -102,7 +102,7 @@
  '(mode-line-buffer-id ((t (:foreground "gold" :weight bold))))
  '(mode-line-emphasis ((t (:weight bold :slant italic :foreground "#cccccc"))))
  '(mode-line-highlight ((t (:weight bold :box nil :foreground "#cc99cc"))))
- '(mode-line-inactive ((t (:weight normal :box (:line-width -1 :color nil :style nil) :foreground "#4D4D4D" :background "#1A1A1A" :inherit (mode-line)))))
+ '(mode-line-inactive ((t (:weight normal :foreground "#4D4D4D" :background "#1A1A1A" :inherit (mode-line)))))
  '(isearch ((t (:weight bold :inverse-video t :foreground "#000000" :background "#ff1493"))))
  '(isearch-fail ((t (:inverse-video t :foreground "#bdbdb3" :background "#8b0000" :inherit (font-lock-warning-face)))))
  '(lazy-highlight ((t (:weight bold :inverse-video t :foreground "#000000" :background "#ffff00"))))
