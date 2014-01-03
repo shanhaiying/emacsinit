@@ -8,6 +8,7 @@
  '(TeX-source-correlate-start-server t)
  '(TeX-view-program-list (quote (("Okular sync" "okular --unique %o#src:%n`pwd`/./%b"))))
  '(TeX-view-program-selection (quote ((output-pdf "Okular sync"))))
+ '(custom-safe-themes (quote ("f3ceb7a30f6501c1093bc8ffdf755fe5ddff3a85437deebf3ee8d7bed8991711" default)))
  '(initial-buffer-choice nil)
  '(initial-scratch-message nil)
  '(mode-require-final-newline t)
