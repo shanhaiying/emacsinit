@@ -10,7 +10,7 @@
  '(TeX-view-program-selection (quote ((output-pdf "Okular sync"))))
  '(initial-buffer-choice nil)
  '(initial-scratch-message nil)
- '(mode-require-final-newline nil)
+ '(mode-require-final-newline t)
  '(paren-highlight-offscreen t)
  '(popwin:popup-window-position (quote bottom))
  '(preview-scale-function 1.5)
