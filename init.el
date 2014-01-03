@@ -69,6 +69,12 @@
 ;;)
 ;;(toggle-fullscreen)
 
+(defun indent-whole-buffer ()
+  "indent whole buffer"
+  (interactive)
+  (delete-trailing-whitespace)
+  (indent-region (point-min) (point-max) nil)
+  (untabify (point-min) (point-max)))
 
 
 
@@ -344,6 +350,8 @@
 (global-set-key (kbd "C-. d") 'diary)
 (global-set-key (kbd "C-. c") 'calendar)
 (global-set-key (kbd "C-c l") 'quick-copy-line)
+(global-set-key (kbd "C-, /") 'indent-whole-buffer)
+(global-set-key (kbd "C-c ;") 'comment-or-uncomment-region)
 (put 'dired-find-alternate-file 'disabled nil)
 
 ;;----------------------------------------------------------

@@ -88,7 +88,7 @@
  '(font-lock-preprocessor-face ((t (:foreground "#919191" :inherit (font-lock-builtin-face)))))
  '(font-lock-regexp-grouping-backslash ((t (:weight bold :foreground "#E9C062" :inherit (bold)))))
  '(font-lock-regexp-grouping-construct ((t (:weight bold :foreground "#ff0000" :inherit (bold)))))
- '(font-lock-string-face ((t (:foreground "#61CE3C"))))
+ '(font-lock-string-face ((t (:foreground "light sea green"))))
  '(font-lock-type-face ((t (:weight bold :foreground "#D8FA3C"))))
  '(font-lock-variable-name-face ((t (:foreground "#D8FA3C"))))
  '(font-lock-warning-face ((t (:weight bold :foreground "#ff69b4" :inherit (error)))))
