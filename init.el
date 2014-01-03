@@ -380,6 +380,12 @@
 ;  (sp-local-pair "\{" nil :actions :rem)
   (sp-local-pair "\\{" "\\}" :actions '(insert))
 )
+
+(sp-with-modes '(python-mode)
+  (sp-local-pair "(" ")" :actions '(insert wrap))
+  (sp-local-pair "\"" "\"" :actions '(insert wrap))
+  (sp-local-pair "'" "'" :actions '(insert wrap))
+)
 ;;----------------------------------------------------------
 ;; ---- END SMART PAREN ----
 ;;----------------------------------------------------------
@@ -436,4 +442,11 @@
        (set-frame-parameter nil 'alpha '(100 100))
      (set-frame-parameter nil 'alpha '(80 50))))
  (global-set-key (kbd "C-c t") 'toggle-transparency)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;;;;;;;;;;;;;;;;;  jedi-emacs  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:setup-keys t)                      ; optional
+(setq jedi:complete-on-dot t)                 ; optional
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
