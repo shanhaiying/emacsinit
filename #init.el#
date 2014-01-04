@@ -24,7 +24,7 @@
 
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
 (add-to-list 'load-path "/home/xin/.emacs.d/")
-(add-to-list 'load-path "/home/xin/.emacs.d/elpa/smartparens-1.6.1/")
+．００(add-to-list 'load-path "/home/xin/.emacs.d/elpa/smartparens-1.6.1/")
 (add-to-list 'load-path	"/home/xin/.emacs.d/maxframe.el/")
 (add-to-list 'load-path "/home/xin/.emacs.d/yasnippet-master/")
 
@@ -38,7 +38,6 @@
 (setq default-cursor-type 'bar)
 (package-initialize)
 (global-linum-mode t)
-(global-discover-mode 1)
 ;(hlinum-activate)
 (ido-mode t)
 (autoload 'python-mode "python-mode" "Python Mode." t)
