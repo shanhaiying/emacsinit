@@ -66,7 +66,7 @@
 
 (custom-theme-set-faces
  'xin-cyber
- '(default ((t (:family "Droid Sans Mono" :foundry "unknown" :width normal :height 105 :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "#d3d3d3" :background "#2e3436" :stipple nil :inherit nil))))
+ '(default ((t (:family "Source Code Pro" :foundry "unknown" :width normal :height 110 :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "#d3d3d3" :background "#2e3436" :stipple nil :inherit nil))))
  '(cursor ((t (:background "Gold"))))
  '(fixed-pitch ((t (:family "Monospace"))))
  '(variable-pitch ((t (:family "Sans Serif"))))
