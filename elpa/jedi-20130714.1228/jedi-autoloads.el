@@ -5,7 +5,7 @@
 
 ;;;### (autoloads (jedi:setup anything-jedi-related-names helm-jedi-related-names
 ;;;;;;  jedi:ac-setup jedi:complete jedi:start-dedicated-server)
-;;;;;;  "jedi" "jedi.el" (21191 17058 891995 538000))
+;;;;;;  "jedi" "jedi.el" (21191 30586 407429 779000))
 ;;; Generated autoloads from jedi.el
 
 (autoload 'jedi:start-dedicated-server "jedi" "\
@@ -68,7 +68,7 @@ what jedi can do.
 
 ;;;***
 
-;;;### (autoloads nil nil ("jedi-pkg.el") (21191 17058 963410 615000))
+;;;### (autoloads nil nil ("jedi-pkg.el") (21191 30586 478606 262000))
 
 ;;;***
 

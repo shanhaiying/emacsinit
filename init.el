@@ -38,9 +38,8 @@
 (setq default-cursor-type 'bar)
 (package-initialize)
 (global-linum-mode t)
-(hlinum-activate)
+;(hlinum-activate)
 (ido-mode t)
-(paren-activate)
 (autoload 'python-mode "python-mode" "Python Mode." t)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
@@ -79,7 +78,6 @@
 
 
 
-(require 'highlight-parentheses)
 (global-unset-key (kbd "S-<down-mouse-1>"))
 (global-set-key (kbd "S-<mouse-1>") 'mc/add-cursor-on-click)
 
@@ -139,12 +137,13 @@
       (add-hook 'LaTeX-mode-hook mode))
       (list 'turn-on-reftex
 	    'LaTeX-math-mode
-	    'highlight-parentheses-mode
 	    ))
+(setq reftex-plug-into-AUCTeX t)
 
-;; (setq TeX-view-program-list '(("Evince" "evince %o"))
-;;       TeX-view-program-selection '((output-pdf "Evince")))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Mic-Paren ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(paren-activate)
 
  (add-hook 'LaTeX-mode-hook
            (function (lambda ()
@@ -155,6 +154,15 @@
  (add-hook 'c-mode-common-hook
            (function (lambda ()
                         (paren-toggle-open-paren-context 1))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Highlight-Paren ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define-globalized-minor-mode global-highlight-parentheses-mode
+  highlight-parentheses-mode
+  (lambda ()
+    (highlight-parentheses-mode t)))
+(global-highlight-parentheses-mode t)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; SyncTeX basics
 
@@ -446,10 +454,29 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;  jedi-emacs  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'auto-complete)
+(require 'jedi)
+(setq jedi:server-command (list "/usr/bin/python3" jedi:server-script))
+(ac-linum-workaround)
 (add-hook 'python-mode-hook 'jedi:setup)
-;; (add-hook 'python-mode-hook
-;; 	  (lambda () (setq jedi:server-command
-;;       (list "/usr/bin/python3" jedi:server-script))))
+(setq jedi:server-args
+      '("--sys-path" "/usr/lib/python3/dist-packages"
+        "--sys-path" "/usr/local/lib/python3.3/dist-packages"))
 (setq jedi:setup-keys t)                      ; optional
 (setq jedi:complete-on-dot t)                 ; optional
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;;;;;;;;;;;;;;;;;  el-get  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+;; (unless (require 'el-get nil 'noerror)
+;;   (with-current-buffer
+;;       (url-retrieve-synchronously
+;;        "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+;;     (let (el-get-master-branch)
+;;       (goto-char (point-max))
+;;       (eval-print-last-sexp))))
+
+;; (el-get 'sync)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
