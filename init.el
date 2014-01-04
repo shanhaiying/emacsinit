@@ -447,6 +447,9 @@
 
 ;;;;;;;;;;;;;;;;;;;;  jedi-emacs  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-hook 'python-mode-hook 'jedi:setup)
+;; (add-hook 'python-mode-hook
+;; 	  (lambda () (setq jedi:server-command
+;;       (list "/usr/bin/python3" jedi:server-script))))
 (setq jedi:setup-keys t)                      ; optional
 (setq jedi:complete-on-dot t)                 ; optional
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
