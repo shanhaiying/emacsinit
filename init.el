@@ -15,6 +15,7 @@
  '(paren-highlight-offscreen t)
  '(popwin:popup-window-position (quote bottom))
  '(preview-scale-function 1.5)
+ '(python-python-command "/usr/bin/python3")
  '(require-final-newline nil))
 (setq default-frame-alist '((cursor-color . "Gold")))
 
@@ -60,7 +61,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(linum ((t (:inherit (shadow default) :background "#3f3f3f" :foreground "chocolate")))))
-(set-face-attribute 'default nil :height 110)
+(set-face-attribute 'default nil :height 120)
 ;;(defun toggle-fullscreen ()
 ;;  (interactive)
 ;;  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
@@ -456,15 +457,18 @@
 
 ;;;;;;;;;;;;;;;;;;;;  jedi-emacs  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'auto-complete)
+(setq jedi:server-args
+      '("--sys-path" "/usr/lib/python3/dist-packages"
+        "--sys-path" "/usr/local/lib/python3.3/dist-packages"))
 (require 'jedi)
 (setq jedi:server-command (list "/usr/bin/python3" jedi:server-script))
 (ac-linum-workaround)
 (add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:server-args
-      '("--sys-path" "/usr/lib/python3/dist-packages"
-        "--sys-path" "/usr/local/lib/python3.3/dist-packages"))
+(setq split-width-threshold nil)
+
 (setq jedi:setup-keys t)                      ; optional
 (setq jedi:complete-on-dot t)                 ; optional
+;(setq split-width-threshold nil)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 

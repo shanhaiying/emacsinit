@@ -66,13 +66,13 @@
 
 (custom-theme-set-faces
  'xin-cyber
- '(default ((t (:family "Source Code Pro" :foundry "unknown" :width normal :height 110 :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "#d3d3d3" :background "#2e3436" :stipple nil :inherit nil))))
+ '(default ((t (:family "Source Code Mono" :foundry "unknown" :width normal :height 115 :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "#d3d3d3" :background "#2e3436" :stipple nil :inherit nil))))
  '(cursor ((t (:background "Gold"))))
  '(fixed-pitch ((t (:family "Monospace"))))
  '(variable-pitch ((t (:family "Sans Serif"))))
  '(escape-glyph ((t (:weight bold :foreground "#7d7c61"))))
  '(minibuffer-prompt ((t (:weight bold :foreground "#61CE3C"))))
- '(highlight ((t (:underline (:color foreground-color :style line) :inverse-video nil :foreground "#ffffff" :background "#333333"))))
+ '(highlight ((t (:underline (:color foreground-color :style line) :inverse-video nil :weight bold :foreground "gold" :background "#333333"))))
  '(region ((t (:foreground "#f6f3e8" :background "black"))))
  '(shadow ((t (:foreground "#999999"))))
  '(secondary-selection ((t (:foreground "#f6f3e8" :background "#5f5f5f"))))
