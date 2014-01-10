@@ -61,7 +61,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(linum ((t (:inherit (shadow default) :background "#3f3f3f" :foreground "chocolate")))))
-(set-face-attribute 'default nil :height 125)
+(set-face-attribute 'default nil :height 116)
 ;;(defun toggle-fullscreen ()
 ;;  (interactive)
 ;;  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
