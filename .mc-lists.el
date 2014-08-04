@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+	sp--self-insert-command
 	))
 
 (setq mc/cmds-to-run-once
