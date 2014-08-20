@@ -9,6 +9,7 @@
  '(TeX-view-program-list (quote (("Okular sync" "okular --unique %o#src:%n`pwd`/./%b"))))
  '(TeX-view-program-selection (quote ((output-pdf "Okular sync"))))
  '(custom-safe-themes (quote ("0e121ff9bef6937edad8dfcff7d88ac9219b5b4f1570fd1702e546a80dba0832" "d070fa185078bf753dcfd873ec63be19fa36a55a0c97dc66848a6d20c5fffdad" "f3ceb7a30f6501c1093bc8ffdf755fe5ddff3a85437deebf3ee8d7bed8991711" default)))
+ '(inhibit-startup-screen t)
  '(initial-buffer-choice nil)
  '(initial-scratch-message nil)
  '(mode-require-final-newline t)
@@ -18,6 +19,8 @@
  '(python-python-command "/usr/bin/python3")
  '(require-final-newline nil))
 (setq default-frame-alist '((cursor-color . "Gold")))
+          (add-to-list 'default-frame-alist
+                      '(font . "-adobe-Source Code Pro-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1"))
 
 (scroll-bar-mode 0)
 (menu-bar-mode 0)
