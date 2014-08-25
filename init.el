@@ -21,6 +21,14 @@
 (setq default-frame-alist '((cursor-color . "Gold")))
           (add-to-list 'default-frame-alist
                       '(font . "-adobe-Source Code Pro-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1"))
+;; use Okular to view AUCTeX-generated PDFs
+;; (when (require 'latex nil t)
+;;   (push '("%(masterdir)" (lambda nil (file-truename (TeX-master-directory))))
+;;         TeX-expand-list)
+;;   (push '("Okular" "okular --unique %o#src:%n%(masterdir)./%b")
+;;         TeX-view-program-list)
+;;   (push '(output-pdf "Okular") TeX-view-program-selection))
+
 
 (scroll-bar-mode 0)
 (menu-bar-mode 0)
