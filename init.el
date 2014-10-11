@@ -29,7 +29,7 @@
 ;;         TeX-view-program-list)
 ;;   (push '(output-pdf "Okular") TeX-view-program-selection))
 
-
+(setq visible-bell t)
 (scroll-bar-mode 0)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
