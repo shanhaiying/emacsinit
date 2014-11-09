@@ -34,7 +34,6 @@
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
 (add-to-list 'load-path "/home/xin/.emacs.d/")
 (add-to-list 'load-path "/home/xin/.emacs.d/elpa/smartparens-1.6.1/")
 (add-to-list 'load-path	"/home/xin/.emacs.d/maxframe.el/")
@@ -145,7 +144,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-(load "auctex.el" nil t t)
+; (load "auctex.el" nil t t)
+(require 'tex)
 ; (load "preview-latex.el" nil t t)
 
 (setq TeX-auto-save t)
