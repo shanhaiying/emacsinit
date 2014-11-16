@@ -16,7 +16,7 @@
  '(paren-highlight-offscreen t)
  '(popwin:popup-window-position (quote bottom))
  '(preview-scale-function 1.5)
- '(python-python-command "/usr/bin/python3")
+ ;'(python-python-command "/usr/bin/python3")
  '(require-final-newline nil))
 (setq default-frame-alist '((cursor-color . "Gold")))
           (add-to-list 'default-frame-alist
@@ -33,6 +33,9 @@
 (scroll-bar-mode 0)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
+
+(when window-system
+  (exec-path-from-shell-initialize))
 
 (add-to-list 'load-path "/home/xin/.emacs.d/")
 (add-to-list 'load-path "/home/xin/.emacs.d/elpa/smartparens-1.6.1/")
@@ -55,6 +58,9 @@
 (autoload 'python-mode "python-mode" "Python Mode." t)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
+(add-hook 'python-mode-hook 'anaconda-mode)
+(add-hook 'python-mode-hook 'ac-anaconda-setup)
+(add-hook 'python-mode-hook 'eldoc-mode)
 (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
 
 (require 'popwin)
@@ -477,17 +483,20 @@
 
 ;;;;;;;;;;;;;;;;;;;;  jedi-emacs  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'auto-complete)
-(setq jedi:server-args
-      '("--sys-path" "/usr/lib/python3/dist-packages"
-        "--sys-path" "/usr/local/lib/python3.3/dist-packages"))
-(require 'jedi)
-(setq jedi:server-command (list "/usr/bin/python3" jedi:server-script))
-(ac-linum-workaround)
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq split-width-threshold nil)
+;; (setq jedi:server-args
+;;       '("--sys-path" "/usr/lib/python3/dist-packages"
+;;         "--sys-path" "/usr/local/lib/python3.3/dist-packages"))
+;; (setq jedi:server-args
+;;       '("--sys-path" "/home/xin/anaconda"
+;; 	))
+;; (require 'jedi)
+;; ;(setq jedi:server-command (list "/usr/bin/python3" jedi:server-script))
+;; (ac-linum-workaround)
+;; (add-hook 'python-mode-hook 'jedi:setup)
+;; (setq split-width-threshold nil)
 
-(setq jedi:setup-keys t)                      ; optional
-(setq jedi:complete-on-dot t)                 ; optional
+;; (setq jedi:setup-keys t)                      ; optional
+;; (setq jedi:complete-on-dot t)                 ; optional
 ;(setq split-width-threshold nil)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
