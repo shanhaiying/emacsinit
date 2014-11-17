@@ -15,8 +15,8 @@
  '(mode-require-final-newline t)
  '(paren-highlight-offscreen t)
  '(popwin:popup-window-position (quote bottom))
+ '(popwin:special-display-config (quote ((direx:direx-mode :width 25 :position left :dedicated t) ("*Miniedit Help*" :noselect t) (help-mode) (completion-list-mode :noselect t) (compilation-mode :noselect t) (grep-mode :noselect t) (occur-mode :noselect t) ("*Pp Macroexpand Output*" :noselect t) ("*Shell Command Output*") ("*vc-diff*") ("*vc-change-log*") (" *undo-tree*" :width 60 :position right) ("^\\*anything.*\\*$" :regexp t) ("*slime-apropos*") ("*slime-macroexpansion*") ("*slime-description*") ("*slime-compilation*" :noselect t) ("*slime-xref*") (sldb-mode :stick t) (slime-repl-mode) (slime-connection-list-mode) ("*anaconda-doc*" :regexp nil))))
  '(preview-scale-function 1.5)
- ;'(python-python-command "/usr/bin/python3")
  '(require-final-newline nil))
 (setq default-frame-alist '((cursor-color . "Gold")))
           (add-to-list 'default-frame-alist
@@ -58,9 +58,14 @@
 (autoload 'python-mode "python-mode" "Python Mode." t)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
+(add-hook 'python-mode-hook 'company-mode)
 (add-hook 'python-mode-hook 'anaconda-mode)
-(add-hook 'python-mode-hook 'ac-anaconda-setup)
+;(add-hook 'python-mode-hook 'ac-anaconda-setup)
 (add-hook 'python-mode-hook 'eldoc-mode)
+(eval-after-load 'company
+(progn
+    '(add-to-list 'company-backends 'company-anaconda)
+    ))
 (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
 
 (require 'popwin)
@@ -482,7 +487,7 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;  jedi-emacs  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'auto-complete)
+;;(require 'auto-complete)
 ;; (setq jedi:server-args
 ;;       '("--sys-path" "/usr/lib/python3/dist-packages"
 ;;         "--sys-path" "/usr/local/lib/python3.3/dist-packages"))
