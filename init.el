@@ -53,7 +53,6 @@
 (setq default-cursor-type 'bar)
 (package-initialize)
 (global-linum-mode t)
-(global-discover-mode 1)
 ;(hlinum-activate)
 (ido-mode t)
 (autoload 'python-mode "python-mode" "Python Mode." t)
