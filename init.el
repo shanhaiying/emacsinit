@@ -30,6 +30,7 @@
 ;;   (push '(output-pdf "Okular") TeX-view-program-selection))
 
 (setq visible-bell t)
+(setq split-width-threshold nil)
 (scroll-bar-mode 0)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
@@ -67,6 +68,7 @@
     '(add-to-list 'company-backends 'company-anaconda)
     ))
 (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
+
 
 (require 'popwin)
 (popwin-mode 1)
@@ -117,6 +119,7 @@
 (global-set-key [f9] 'toggle-tool-bar-mode-from-frame)
 (global-set-key (kbd "C-<tab>") 'next-buffer)
 (global-set-key (kbd "s-<tab>") 'previous-buffer)
+
 
 (require 'ess-site)
 ;(require 'julia-mode)
@@ -303,10 +306,6 @@
   (local-set-key (kbd "C-. C-d") 'insert-documentclass)
   (local-set-key (kbd "C-. d") 'insert-documentclassxin))
 
-
-
-
-
 (add-hook 'LaTeX-mode-hook 'my-LaTeX-keys)
 
 (defun demolish-tex-help ()
@@ -388,13 +387,23 @@
 	(kill-append (buffer-substring beg end) (< end beg))
       (kill-new (buffer-substring beg end))))
   (beginning-of-line 1))
-(global-set-key (kbd "C-. m") 'mu4e)
 (global-set-key (kbd "C-. d") 'diary)
 (global-set-key (kbd "C-. c") 'calendar)
 (global-set-key (kbd "C-c l") 'quick-copy-line)
 (global-set-key (kbd "C-, /") 'indent-whole-buffer)
 (global-set-key (kbd "C-c ;") 'comment-or-uncomment-region)
+(global-set-key (kbd "M-;") 'company-complete-common)
 (put 'dired-find-alternate-file 'disabled nil)
+
+(defun py-save-all-and-compile ()
+  (interactive)
+  (save-some-buffers 1)
+  (py-execute-buffer))
+(defun my-python-keys ()
+  (local-set-key (kbd "C-, C-c") 'py-save-all-and-compile)
+  )
+(add-hook 'python-mode-hook 'my-python-keys)
+
 
 ;;----------------------------------------------------------
 ;; ---- END GLOBAL KEYS ----
