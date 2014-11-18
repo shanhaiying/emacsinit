@@ -531,8 +531,8 @@
 (setq python-shell-virtualenv-path "/home/xin/anaconda")
 (setq pdb-path '/home/xin/anaconda/lib/python3.4/pdb.py
       gud-pdb-command-name (symbol-name pdb-path))
-(defadvice pdb (before gud-query-cmdline activate)
-  "Provide a better default command line when called interactively."
-  (interactive
-   (list (gud-query-cmdline pdb-path
-	 		    (file-name-nondirectory buffer-file-name)))))
+;; (defadvice pdb (before gud-query-cmdline activate)
+;;   "Provide a better default command line when called interactively."
+;;   (interactive
+;;    (list (gud-query-cmdline pdb-path
+;; 	 		    (file-name-nondirectory buffer-file-name)))))
