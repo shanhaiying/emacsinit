@@ -34,7 +34,12 @@
 (scroll-bar-mode 0)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
-
+;(setq python-shell-virtualenv-path "/home/xin/anaconda")
+(require 'virtualenvwrapper)
+;(venv-initialize-interactive-shells) ;; if you want interactive shell support
+;(venv-initialize-eshell) ;; if you want eshell support
+;(setq venv-location "/home/xin/anaconda")
+;(add-hook 'python-mode-hook 'venv-workon)
 
 (when window-system
   (exec-path-from-shell-initialize))
@@ -49,6 +54,7 @@
 	     . "http://marmalade-repo.org/packages/")) 
 (add-to-list 'package-archives '("melpa"
 	     . "http://melpa.milkbox.net/packages/"))
+
 
 (setq default-cursor-type 'bar)
 (package-initialize)
@@ -527,12 +533,3 @@
 
 ;; (el-get 'sync)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(setq python-shell-virtualenv-path "/home/xin/anaconda")
-(setq pdb-path '/home/xin/anaconda/lib/python3.4/pdb.py
-      gud-pdb-command-name (symbol-name pdb-path))
-(defadvice pdb (before gud-query-cmdline activate)
-  "Provide a better default command line when called interactively."
-  (interactive
-   (list (gud-query-cmdline pdb-path
-	 		    (file-name-nondirectory buffer-file-name)))))
