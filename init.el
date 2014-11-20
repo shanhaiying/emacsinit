@@ -19,8 +19,8 @@
  '(preview-scale-function 1.5)
  '(require-final-newline nil))
 (setq default-frame-alist '((cursor-color . "Gold")))
-          (add-to-list 'default-frame-alist
-                      '(font . "-adobe-Source Code Pro-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1"))
+(add-to-list 'default-frame-alist
+             '(font . "-adobe-Source Code Pro-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1"))
 ;; use Okular to view AUCTeX-generated PDFs
 ;; (when (require 'latex nil t)
 ;;   (push '("%(masterdir)" (lambda nil (file-truename (TeX-master-directory))))
@@ -41,29 +41,30 @@
 
 (add-to-list 'load-path "/home/xin/.emacs.d/")
 (add-to-list 'load-path "/home/xin/.emacs.d/elpa/smartparens-1.6.1/")
-(add-to-list 'load-path	"/home/xin/.emacs.d/maxframe.el/")
+(add-to-list 'load-path "/home/xin/.emacs.d/maxframe.el/")
 (add-to-list 'load-path "/home/xin/.emacs.d/yasnippet-master/")
 
 (require 'package)
 (add-to-list 'package-archives '("marmalade"
-	     . "http://marmalade-repo.org/packages/")) 
+                                 . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa"
-	     . "http://melpa.milkbox.net/packages/"))
+                                 . "http://melpa.milkbox.net/packages/"))
 
 (setq default-cursor-type 'bar)
 (package-initialize)
 (global-linum-mode t)
-;(hlinum-activate)
+                                        ;(hlinum-activate)
 (ido-mode t)
 (autoload 'python-mode "python-mode" "Python Mode." t)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
-(add-hook 'python-mode-hook 'company-mode)
-(add-hook 'python-mode-hook 'anaconda-mode)
 ;(add-hook 'python-mode-hook 'ac-anaconda-setup)
+(add-hook 'python-mode-hook 'anaconda-mode)
+                                        ;(add-hook 'python-mode-hook 'ac-anaconda-setup)
 (add-hook 'python-mode-hook 'eldoc-mode)
+(add-hook 'python-mode-hook 'company-mode)
 (eval-after-load 'company
-(progn
+  (progn
     '(add-to-list 'company-backends 'company-anaconda)
     ))
 (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
@@ -87,9 +88,9 @@
 ;;(defun toggle-fullscreen ()
 ;;  (interactive)
 ;;  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-;;	    		 '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
+;;                       '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
 ;;  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-;;	    		 '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
+;;                       '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
 ;;)
 ;;(toggle-fullscreen)
 
@@ -109,10 +110,10 @@
   (interactive)
   (let ((current-value (frame-parameter nil 'fullscreen)))
     (set-frame-parameter nil 'fullscreen
-      (if (equal 'fullboth current-value)
-        (if (boundp 'old-fullscreen) old-fullscreen nil)
-        (progn (setq old-fullscreen current-value)
-          'fullboth)))))
+                         (if (equal 'fullboth current-value)
+                             (if (boundp 'old-fullscreen) old-fullscreen nil)
+                           (progn (setq old-fullscreen current-value)
+                                  'fullboth)))))
 (global-set-key [f11] 'toggle-fullscreen)
 (global-set-key [f10] 'toggle-menu-bar-mode-from-frame)
 (global-set-key [f9] 'toggle-tool-bar-mode-from-frame)
@@ -121,11 +122,11 @@
 
 
 (require 'ess-site)
-;(require 'julia-mode)
+                                        ;(require 'julia-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (autoload 'markdown-mode "markdown-mode"
-   "Major mode for editing Markdown files" t)
+  "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
@@ -136,30 +137,30 @@
 (global-set-key "\C-x\C-b" 'bs-show)
 (setq bs-default-configuration "targets")
 
-    (defun kill-all-dired-buffers()
-      "Kill all dired buffers."
-      (interactive)
-      (save-excursion
-        (let((count 0))
-          (dolist(buffer (buffer-list))
-            (set-buffer buffer)
-            (when (equal major-mode 'dired-mode)
-              (setq count (1+ count))
-              (kill-buffer buffer)))
-          (message "Killed %i dired buffer(s)." count ))))
+(defun kill-all-dired-buffers()
+  "Kill all dired buffers."
+  (interactive)
+  (save-excursion
+    (let((count 0))
+      (dolist(buffer (buffer-list))
+        (set-buffer buffer)
+        (when (equal major-mode 'dired-mode)
+          (setq count (1+ count))
+          (kill-buffer buffer)))
+      (message "Killed %i dired buffer(s)." count ))))
 (define-key bs-mode-map (kbd "D D") 'kill-all-dired-buffers)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
- (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
- (load-theme 'xin-cyber t)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(load-theme 'xin-cyber t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-; (load "auctex.el" nil t t)
+                                        ; (load "auctex.el" nil t t)
 (require 'tex)
-; (load "preview-latex.el" nil t t)
+                                        ; (load "preview-latex.el" nil t t)
 
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
@@ -169,10 +170,10 @@
 
 
 (mapc (lambda (mode)
-      (add-hook 'LaTeX-mode-hook mode))
+        (add-hook 'LaTeX-mode-hook mode))
       (list 'turn-on-reftex
-	    'LaTeX-math-mode
-	    ))
+            'LaTeX-math-mode
+            ))
 (setq reftex-plug-into-AUCTeX t)
 
 
@@ -180,15 +181,15 @@
 
 (paren-activate)
 
- (add-hook 'LaTeX-mode-hook
-           (function (lambda ()
-                       (paren-toggle-matching-quoted-paren 1)
-                       (paren-toggle-matching-paired-delimiter 1))))
+(add-hook 'LaTeX-mode-hook
+          (function (lambda ()
+                      (paren-toggle-matching-quoted-paren 1)
+                      (paren-toggle-matching-paired-delimiter 1))))
 
 
- (add-hook 'c-mode-common-hook
-           (function (lambda ()
-                        (paren-toggle-open-paren-context 1))))
+(add-hook 'c-mode-common-hook
+          (function (lambda ()
+                      (paren-toggle-open-paren-context 1))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Highlight-Paren ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -199,10 +200,10 @@
 (global-highlight-parentheses-mode t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; SyncTeX basics
+                                        ; SyncTeX basics
 
-; un-urlify and urlify-escape-only should be improved to handle all special characters, not only spaces.
-; The fix for spaces is based on the first comment on http://emacswiki.org/emacs/AUCTeX#toc20
+                                        ; un-urlify and urlify-escape-only should be improved to handle all special characters, not only spaces.
+                                        ; The fix for spaces is based on the first comment on http://emacswiki.org/emacs/AUCTeX#toc20
 
 (defun un-urlify (fname-or-url)
   "Transform file:///absolute/path from Gnome into /absolute/path with very limited support for special characters"
@@ -218,64 +219,64 @@
   "Transform /absolute/path to file:///absolute/path for Gnome with very limited support for special characters"
   (if (string= (substring absolute-path 0 1) "/")
       (concat "file://" (urlify-escape-only absolute-path))
-      absolute-path))
+    absolute-path))
 
 
 
 (fset 'insert-twosided-brackets
-   [?\{ ?\} left])
+      [?\{ ?\} left])
 (fset 'insert-frac
-   [?\\ ?f ?r ?a ?c ?\{ ?\} ?\{ ?\} left left left])
+      [?\\ ?f ?r ?a ?c ?\{ ?\} ?\{ ?\} left left left])
 (fset 'insert-bigparentheses
-   [?\\ ?l ?e ?f ?t ?\( ?\\ ?r ?i ?g ?h ?t ?\) left left left left left left left])
+      [?\\ ?l ?e ?f ?t ?\( ?\\ ?r ?i ?g ?h ?t ?\) left left left left left left left])
 (fset 'insert-twosided-parentheses
-   [?\( ?\) left])
+      [?\( ?\) left])
 (fset 'insert-emph
-   [?\\ ?e ?m ?p ?h ?\{ ?\} left])
+      [?\\ ?e ?m ?p ?h ?\{ ?\} left])
 (fset 'insert-math-mode
-   [?\\ ?\[ ?\\ ?\] left left])
+      [?\\ ?\[ ?\\ ?\] left left])
 (fset 'insert-exponent
-   [?^ ?\{ ?\} left])
+      [?^ ?\{ ?\} left])
 (fset 'insert-little-math-mode
-   [?$ ?$ left])
+      [?$ ?$ left])
 (fset 'insert-begin-document
-   [?\\ ?b ?e ?g ?i ?n ?\{ ?d ?o ?c ?u ?m ?e ?n ?t ?\} return return return ?\\ ?e ?n ?d ?\{ ?d ?o ?c ?u ?m ?e ?n ?t ?\} up up])
+      [?\\ ?b ?e ?g ?i ?n ?\{ ?d ?o ?c ?u ?m ?e ?n ?t ?\} return return return ?\\ ?e ?n ?d ?\{ ?d ?o ?c ?u ?m ?e ?n ?t ?\} up up])
 (fset 'insert-subscript
-   [?_ ?\{ ?\} left])
+      [?_ ?\{ ?\} left])
 (fset 'long-comment-mark
-   "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+      "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
 (fset 'insert-mbox
-   [?\\ ?m ?b ?o ?x ?\{ ?\} left])
+      [?\\ ?m ?b ?o ?x ?\{ ?\} left])
 (fset 'insert-\\infty
-   "\\infty")
+      "\\infty")
 (fset 'insert-\\partial
-   "\\partial")
+      "\\partial")
 (fset 'insert-\\numberthis
-   "\\numberthis\\label{}\C-b")
+      "\\numberthis\\label{}\C-b")
 (fset 'insert-\\rightarrow
-   "\\rightarrow")
+      "\\rightarrow")
 (fset 'insert-qquad-mbox
-   "\\qquad\\mbox{}\\qquad\C-b\C-b\C-b\C-b\C-b\C-b\C-b")
+      "\\qquad\\mbox{}\\qquad\C-b\C-b\C-b\C-b\C-b\C-b\C-b")
 (fset 'insert-qquad
-   "\\qquad ")
+      "\\qquad ")
 (fset 'insert-textbf
-   "\\textbf{}\C-b")
+      "\\textbf{}\C-b")
 (fset 'insert-backslash
-   "\\")
+      "\\")
 (fset 'insert-bigbrackets
-   [?\\ ?l ?e ?f ?t ?\[ ?\\ ?r ?i ?g ?h ?t ?\] left left left left left left left])
-;(fset 'insert-bigbraces
-;   [?\\ ?l ?e ?f ?t ?\\ ?\{ "\{" ?\\ ?r ?i ?g ?h ?t ?\\ ?\} left left left left left left left left])
+      [?\\ ?l ?e ?f ?t ?\[ ?\\ ?r ?i ?g ?h ?t ?\] left left left left left left left])
+                                        ;(fset 'insert-bigbraces
+                                        ;   [?\\ ?l ?e ?f ?t ?\\ ?\{ "\{" ?\\ ?r ?i ?g ?h ?t ?\\ ?\} left left left left left left left left])
 (fset 'insert-bigbraces
       "\\left\\{\\right\C-b\C-b\C-b\C-b\C-b\C-b")
 (fset 'insert-textit
-   [?\\ ?t ?e ?x ?t ?i ?t ?\{ ?\} left])
+      [?\\ ?t ?e ?x ?t ?i ?t ?\{ ?\} left])
 (fset 'insert-text
-   [?\\ ?t ?e ?x ?t ?\{ ?\} left])
+      [?\\ ?t ?e ?x ?t ?\{ ?\} left])
 (fset 'insert-documentclass
-   [?\\ ?d ?o ?c ?u ?m ?e ?n ?t ?c ?l ?a ?s ?s ?\{ ?\} left])
+      [?\\ ?d ?o ?c ?u ?m ?e ?n ?t ?c ?l ?a ?s ?s ?\{ ?\} left])
 (fset 'insert-documentclassxin
-   [?\\ ?d ?o ?c ?u ?m ?e ?n ?t ?c ?l ?a ?s ?s ?\{ ?\} left ?x ?i ?n ?-])
+      [?\\ ?d ?o ?c ?u ?m ?e ?n ?t ?c ?l ?a ?s ?s ?\{ ?\} left ?x ?i ?n ?-])
 
 
 (defun my-LaTeX-keys ()
@@ -325,24 +326,24 @@
         (master-file (TeX-master-file)))
     (TeX-save-document "")
     (TeX-run-TeX "latexmk"
-                 ;(TeX-command-expand "latexmk %t" 'TeX-master-file)
-		 (TeX-command-expand "latexmk -pdflatex='pdflatex -file-line-error' -pdf %s" 'TeX-master-file)
+                                        ;(TeX-command-expand "latexmk %t" 'TeX-master-file)
+                 (TeX-command-expand "latexmk -pdflatex='pdflatex -file-line-error' -pdf %s" 'TeX-master-file)
                  master-file)
     (if (plist-get TeX-error-report-switches (intern master-file))
         (TeX-next-error t)
       (progn
-       (demolish-tex-help)
-       (minibuffer-message "latexmk done")))))
+        (demolish-tex-help)
+        (minibuffer-message "latexmk done")))))
 
 (add-hook 'LaTeX-mode-hook
           (lambda () (local-set-key (kbd "C-, C-,") #'run-latexmk)))
 
 (defun run-latex ()
-    (interactive)
-    (let ((process (TeX-active-process))) (if process (delete-process process)))
-    (let ((TeX-save-query nil)) (TeX-save-document ""))
-    (TeX-command-menu "LaTeX")
-    (demolish-tex-help))
+  (interactive)
+  (let ((process (TeX-active-process))) (if process (delete-process process)))
+  (let ((TeX-save-query nil)) (TeX-save-document ""))
+  (TeX-command-menu "LaTeX")
+  (demolish-tex-help))
 (add-hook 'LaTeX-mode-hook (lambda () (local-set-key (kbd "C-, C-c") #'run-latex)))
 
 
@@ -360,7 +361,7 @@
 (add-to-list 'org-export-latex-classes
              '("article"
                "\\documentclass{article}"
-               ("\\section{%s}" . "\\section*{%s}")))  
+               ("\\section{%s}" . "\\section*{%s}")))
 ;;----------------------------------------------------------
 ;; ---- END ORG SETTING ----
 ;;----------------------------------------------------------
@@ -373,7 +374,7 @@
   "Copy lines (as many as prefix argument) in the kill ring"
   (interactive "p")
   (kill-ring-save (line-beginning-position)
-		  (line-beginning-position (+ 1 arg)))
+                  (line-beginning-position (+ 1 arg)))
   (message "%d line%s copied" arg (if (= 1 arg) "" "s")))
 (defun quick-copy-line ()
   "Copy the whole line that point is on and move to the beginning of the next line.
@@ -381,9 +382,9 @@
     kill-ring."
   (interactive)
   (let ((beg (line-beginning-position 1))
-	(end (line-beginning-position 2)))
+        (end (line-beginning-position 2)))
     (if (eq last-command 'quick-copy-line)
-	(kill-append (buffer-substring beg end) (< end beg))
+        (kill-append (buffer-substring beg end) (< end beg))
       (kill-new (buffer-substring beg end))))
   (beginning-of-line 1))
 (global-set-key (kbd "C-. d") 'diary)
@@ -392,6 +393,12 @@
 (global-set-key (kbd "C-, /") 'indent-whole-buffer)
 (global-set-key (kbd "C-c ;") 'comment-or-uncomment-region)
 (global-set-key (kbd "M-;") 'company-complete-common)
+(global-set-key (kbd "C-?") 'help-command)
+(global-set-key (kbd "M-?") 'mark-paragraph)
+(global-set-key (kbd "C-h") 'delete-backward-char)
+(global-set-key (kbd "M-h") 'backward-kill-word)
+(global-set-key (kbd "C-, SPC") 'just-one-space)
+
 (put 'dired-find-alternate-file 'disabled nil)
 
 (defun py-save-all-and-compile ()
@@ -413,11 +420,11 @@
 ;; ---- BEGIN SMART PAREN ----
 ;;----------------------------------------------------------
 (require 'smartparens)
-;(require 'smartparens-latex)
+                                        ;(require 'smartparens-latex)
 (smartparens-global-mode 1)
-;(sp-local-pair 'LaTeX-mode "\\\\left(" "\\\\right)" :insert "C-, C-p" :trigger)
-;(require 'smartparens-config)
-;(sp-pair "(" ")" :wrap "C-(")
+                                        ;(sp-local-pair 'LaTeX-mode "\\\\left(" "\\\\right)" :insert "C-, C-p" :trigger)
+                                        ;(require 'smartparens-config)
+                                        ;(sp-pair "(" ")" :wrap "C-(")
 (sp-pair "'" nil :actions :rem)
 (sp-with-modes '(
                  tex-mode
@@ -426,15 +433,15 @@
                  )
   (sp-local-pair "\\[" "\\]" :actions '(insert wrap))
   (sp-local-pair "$" "$")
-;  (sp-local-pair "\{" nil :actions :rem)
+                                        ;  (sp-local-pair "\{" nil :actions :rem)
   (sp-local-pair "\\{" "\\}" :actions '(insert))
-)
+  )
 
 (sp-with-modes '(python-mode)
   (sp-local-pair "(" ")" :actions '(insert wrap))
   (sp-local-pair "\"" "\"" :actions '(insert wrap))
   (sp-local-pair "'" "'" :actions '(insert wrap))
-)
+  )
 ;;----------------------------------------------------------
 ;; ---- END SMART PAREN ----
 ;;----------------------------------------------------------
@@ -453,7 +460,7 @@
 
 
 
-;; 
+;;
 ;; enable a more powerful jump back function from ace jump mode
 ;;
 (autoload
@@ -483,14 +490,14 @@
 (set-frame-parameter (selected-frame) 'alpha '(85 50))
 (add-to-list 'default-frame-alist '(alpha 100 100))
 (eval-when-compile (require 'cl))
- (defun toggle-transparency ()
-   (interactive)
-   (if (/=
-        (cadr (frame-parameter nil 'alpha))
-        100)
-       (set-frame-parameter nil 'alpha '(100 100))
-     (set-frame-parameter nil 'alpha '(80 50))))
- (global-set-key (kbd "C-c t") 'toggle-transparency)
+(defun toggle-transparency ()
+  (interactive)
+  (if (/=
+       (cadr (frame-parameter nil 'alpha))
+       100)
+      (set-frame-parameter nil 'alpha '(100 100))
+    (set-frame-parameter nil 'alpha '(80 50))))
+(global-set-key (kbd "C-c t") 'toggle-transparency)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
@@ -501,7 +508,7 @@
 ;;         "--sys-path" "/usr/local/lib/python3.3/dist-packages"))
 ;; (setq jedi:server-args
 ;;       '("--sys-path" "/home/xin/anaconda"
-;; 	))
+;;      ))
 ;; (require 'jedi)
 ;; ;(setq jedi:server-command (list "/usr/bin/python3" jedi:server-script))
 ;; (ac-linum-workaround)
@@ -510,7 +517,7 @@
 
 ;; (setq jedi:setup-keys t)                      ; optional
 ;; (setq jedi:complete-on-dot t)                 ; optional
-;(setq split-width-threshold nil)
+                                        ;(setq split-width-threshold nil)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
@@ -528,11 +535,20 @@
 ;; (el-get 'sync)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Python ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (setq python-shell-virtualenv-path "/home/xin/anaconda")
 (setq pdb-path '/home/xin/anaconda/lib/python3.4/pdb.py
       gud-pdb-command-name (symbol-name pdb-path))
-;; (defadvice pdb (before gud-query-cmdline activate)
-;;   "Provide a better default command line when called interactively."
-;;   (interactive
-;;    (list (gud-query-cmdline pdb-path
-;; 	 		    (file-name-nondirectory buffer-file-name)))))
+;; (setq-default py-shell-name "ipython")
+;; (setq-default py-which-bufname "IPython")
+;;                                         ; switch to the interpreter after executing code
+;; (setq py-shell-switch-buffers-on-execute-p t)
+;; (setq py-switch-buffers-on-execute-p t)
+;;                                         ; don't split windows
+;; (setq py-split-windows-on-execute-p t)
+;; (setq py-force-py-shell-name-p t)
+;; (setq py-python-command-args '("--matplotlib" "--colors" "LightBG"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
