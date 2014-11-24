@@ -8,7 +8,6 @@
  '(TeX-source-correlate-start-server t)
  '(TeX-view-program-list (quote (("Okular sync" "okular --unique %o#src:%n`pwd`/./%b"))))
  '(TeX-view-program-selection (quote ((output-pdf "Okular sync"))))
- '(custom-safe-themes (quote ("0e121ff9bef6937edad8dfcff7d88ac9219b5b4f1570fd1702e546a80dba0832" "d070fa185078bf753dcfd873ec63be19fa36a55a0c97dc66848a6d20c5fffdad" "f3ceb7a30f6501c1093bc8ffdf755fe5ddff3a85437deebf3ee8d7bed8991711" default)))
  '(inhibit-startup-screen t)
  '(initial-buffer-choice nil)
  '(initial-scratch-message nil)
@@ -85,9 +84,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(linum ((t (:inherit (shadow default) :background "#3f3f3f" :foreground "chocolate"))))
- '(rainbow-delimiters-depth-2-face ((t (:foreground "steel blue"))))
- '(rainbow-delimiters-depth-3-face ((t (:foreground "light salmon"))))
- '(rainbow-delimiters-depth-4-face ((t (:foreground "olive drab")))))
+ '(powerline-active1 ((t (:inherit mode-line :background "grey22"))))
+ '(powerline-active2 ((t (:inherit mode-line :background "grey34"))))
+ '(mode-line ((t (:background "grey28" :box nil))))
+ )
 (set-face-attribute 'default nil :height 120)
 ;;(defun toggle-fullscreen ()
 ;;  (interactive)
@@ -97,6 +97,10 @@
 ;;                       '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
 ;;)
 ;;(toggle-fullscreen)
+
+;; (custom-set-faces
+;;  '(mode-line ((t (:foreground "#030303" :background "#bdbdbd" :box nil))))
+;;  '(mode-line-inactive ((t (:foreground "#f9f9f9" :background "#666666" :box nil)))))
 
 (defun indent-whole-buffer ()
   "indent whole buffer"
@@ -465,16 +469,27 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; company-mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;----------------------------------------------------------
+;; ---- BEGIN COMPANY-MODE ----
+;;----------------------------------------------------------
+
 (add-hook 'python-mode-hook 'company-mode)
 (eval-after-load 'company
   (progn
     '(add-to-list 'company-backends 'company-anaconda)
     ))
 (global-set-key (kbd "M-;") 'company-complete-common)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; helm ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;----------------------------------------------------------
+;; ---- END COMPANY-MODE ----
+;;----------------------------------------------------------
+
+
+;;----------------------------------------------------------
+;; ---- BEGIN HELM ----
+;;----------------------------------------------------------
+
 (require 'helm-config) 
 (global-set-key (kbd "C-c h") 'helm-mini) 
 (global-set-key (kbd "M-x") 'helm-M-x) 
@@ -484,9 +499,16 @@
   (local-set-key (kbd "C-c C-d") 'helm-sage-shell-describe-object-at-point)
   (local-set-key (kbd "M-r") 'helm-sage-command-history))
 (add-hook 'sage-shell-mode-hook 'helm-sage-set-up)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; helm-swoop ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;----------------------------------------------------------
+;; ---- END HELM ----
+;;----------------------------------------------------------
+
+
+;;----------------------------------------------------------
+;; ---- BEGIN HELM-SWOOP ----
+;;----------------------------------------------------------
+
 ;; helm from https://github.com/emacs-helm/helm
 (require 'helm)
 
@@ -522,7 +544,10 @@
 ;; Optional face for each line number
 ;; Face name is `helm-swoop-line-number-face`
 (setq helm-swoop-use-line-number-face t)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;----------------------------------------------------------
+;; ---- END HELM-SWOOP ----
+;;----------------------------------------------------------
 
 
 ;;;;;;;;;;;;;;;;;;;;  Transparency  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -560,22 +585,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-;;;;;;;;;;;;;;;;;;;;  el-get  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-
-;; (unless (require 'el-get nil 'noerror)
-;;   (with-current-buffer
-;;       (url-retrieve-synchronously
-;;        "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-;;     (let (el-get-master-branch)
-;;       (goto-char (point-max))
-;;       (eval-print-last-sexp))))
-
-;; (el-get 'sync)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Python ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;----------------------------------------------------------
+;; ---- BEGIN PYTHON ----
+;;----------------------------------------------------------
 
 (setq python-shell-virtualenv-path "/home/xin/anaconda")
 (setq pdb-path '/home/xin/anaconda/lib/python3.4/pdb.py
@@ -590,13 +602,22 @@
 ;; (setq py-force-py-shell-name-p t)
 ;; (setq py-python-command-args '("--matplotlib" "--colors" "LightBG"))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;----------------------------------------------------------
+;; ---- BEGIN PYTHON ----
+;;----------------------------------------------------------
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; undo-tree ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;----------------------------------------------------------
+;; ---- BEGIN UNDO-TREE ----
+;;----------------------------------------------------------
+
 (require 'undo-tree)
 (global-undo-tree-mode)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;----------------------------------------------------------
+;; ---- END UNDO-TREE ----
+;;----------------------------------------------------------
+
 
 ;;----------------------------------------------------------
 ;; ---- BEGIN GLOBAL KEYS ----
@@ -673,16 +694,52 @@
   )
 (add-hook 'python-mode-hook 'my-python-keys)
 
-
 ;;----------------------------------------------------------
 ;; ---- END GLOBAL KEYS ----
 ;;----------------------------------------------------------
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; rainbow-delimiters ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;----------------------------------------------------------
+;; ---- BEGIN RAINBOW-DELIMITERS ----
+;;----------------------------------------------------------
+
 ;; (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 ;; (add-hook 'LaTeX-mode-hook #'rainbow-delimiters-mode)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; neotree ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;----------------------------------------------------------
+;; ---- END RAINBOW-DELIMITERS ----
+;;----------------------------------------------------------
+
+
+;;----------------------------------------------------------
+;; ---- BEGIN NEOTREE ----
+;;----------------------------------------------------------
+
 (require 'neotree)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;----------------------------------------------------------
+;; ---- END NEOTREE ----
+;;----------------------------------------------------------
+
+
+;;----------------------------------------------------------
+;; ---- BEGIN POWERLINE ----
+;;----------------------------------------------------------
+
+(require 'powerline)
+(powerline-center-theme)
+
+;;----------------------------------------------------------
+;; ---- END POWERLINE ----
+;;----------------------------------------------------------
+
+
+;;----------------------------------------------------------
+;; ---- END POWERLINE ----
+;;----------------------------------------------------------
+
+(ido-mode 1)
+
+;;----------------------------------------------------------
+;; ---- END POWERLINE ----
+;;----------------------------------------------------------
