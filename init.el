@@ -86,7 +86,7 @@
  '(linum ((t (:inherit (shadow default) :background "#3f3f3f" :foreground "chocolate"))))
  '(powerline-active1 ((t (:inherit mode-line :background "grey22"))))
  '(powerline-active2 ((t (:inherit mode-line :background "grey34"))))
- '(mode-line ((t (:background "grey28" :box nil))))
+ '(mode-line ((t (:background "grey34" :box nil))))
  )
 (set-face-attribute 'default nil :height 120)
 ;;(defun toggle-fullscreen ()
