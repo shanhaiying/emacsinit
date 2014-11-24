@@ -443,6 +443,13 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; auto-complete ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'auto-complete)
+(eval-after-load "auto-complete"
+  '(setq ac-modes (append '(sage-shell-mode sage-shell:sage-mode) ac-modes)))
+(add-hook 'sage-shell:sage-mode-hook 'ac-sage-setup)
+(add-hook 'sage-shell-mode-hook 'ac-sage-setup)
+(add-hook 'sage-shell:sage-mode-hook 'auto-complete-mode)
+(add-hook 'sage-shell-mode-hook 'auto-complete-mode)
 ;; (add-hook 'python-mode-hook 'ac-anaconda-setup)
 ;; ;;; auto complete mod
 ;; ;;; should be loaded after yasnippet so that they can work together
@@ -471,6 +478,11 @@
 (global-set-key (kbd "C-c h") 'helm-mini) 
 (global-set-key (kbd "M-x") 'helm-M-x) 
 (helm-mode 1)
+(defun helm-sage-set-up ()
+  (local-set-key (kbd "C-c C-i") 'helm-sage-shell)
+  (local-set-key (kbd "C-c C-d") 'helm-sage-shell-describe-object-at-point)
+  (local-set-key (kbd "M-r") 'helm-sage-command-history))
+(add-hook 'sage-shell-mode-hook 'helm-sage-set-up)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; helm-swoop ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
