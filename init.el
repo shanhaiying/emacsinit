@@ -62,7 +62,6 @@
 (package-initialize)
 (global-linum-mode t)
                                         ;(hlinum-activate)
-(ido-mode t)
 (autoload 'python-mode "python-mode" "Python Mode." t)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
@@ -450,6 +449,8 @@
 (add-hook 'sage-shell-mode-hook 'ac-sage-setup)
 (add-hook 'sage-shell:sage-mode-hook 'auto-complete-mode)
 (add-hook 'sage-shell-mode-hook 'auto-complete-mode)
+(define-key ac-completing-map [return] nil)
+(define-key ac-completing-map "\r" nil)
 ;; (add-hook 'python-mode-hook 'ac-anaconda-setup)
 ;; ;;; auto complete mod
 ;; ;;; should be loaded after yasnippet so that they can work together
@@ -633,6 +634,8 @@
 (define-key my-keys-minor-mode-map (kbd "C-, SPC") 'just-one-space)
 (define-key my-keys-minor-mode-map (kbd "M-y") 'helm-show-kill-ring)
 (define-key my-keys-minor-mode-map (kbd "C-. i") 'imenu)
+(define-key my-keys-minor-mode-map (kbd "C-. n") 'neotree-toggle)
+(define-key my-keys-minor-mode-map (kbd "C-x C-f") 'helm-find-files)
 
 (define-minor-mode my-keys-minor-mode
   "A minor mode so that my key settings override annoying major modes."
@@ -678,4 +681,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; rainbow-delimiters ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 ;; (add-hook 'LaTeX-mode-hook #'rainbow-delimiters-mode)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; neotree ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'neotree)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
