@@ -36,8 +36,16 @@
 (tool-bar-mode 0)
 
 
-(when window-system
-  (exec-path-from-shell-initialize))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; environment variables ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (when window-system
+;;   (exec-path-from-shell-initialize))
+(let ((path (shell-command-to-string ". ~/.bashrc; echo -n $PATH")))
+  (setenv "PATH" path)
+  (setq exec-path 
+        (append
+         (split-string-and-unquote path ":")
+         exec-path)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (add-to-list 'load-path "/home/xin/.emacs.d/")
 (add-to-list 'load-path "/home/xin/.emacs.d/elpa/smartparens-1.6.1/")
@@ -58,15 +66,9 @@
 (autoload 'python-mode "python-mode" "Python Mode." t)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
-;(add-hook 'python-mode-hook 'ac-anaconda-setup)
 (add-hook 'python-mode-hook 'anaconda-mode)
                                         ;(add-hook 'python-mode-hook 'ac-anaconda-setup)
 (add-hook 'python-mode-hook 'eldoc-mode)
-(add-hook 'python-mode-hook 'company-mode)
-(eval-after-load 'company
-  (progn
-    '(add-to-list 'company-backends 'company-anaconda)
-    ))
 (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
 
 
@@ -83,7 +85,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(linum ((t (:inherit (shadow default) :background "#3f3f3f" :foreground "chocolate")))))
+ '(linum ((t (:inherit (shadow default) :background "#3f3f3f" :foreground "chocolate"))))
+ '(rainbow-delimiters-depth-2-face ((t (:foreground "steel blue"))))
+ '(rainbow-delimiters-depth-3-face ((t (:foreground "light salmon"))))
+ '(rainbow-delimiters-depth-4-face ((t (:foreground "olive drab")))))
 (set-face-attribute 'default nil :height 120)
 ;;(defun toggle-fullscreen ()
 ;;  (interactive)
@@ -368,55 +373,6 @@
 
 
 ;;----------------------------------------------------------
-;; ---- BEGIN GLOBAL KEYS ----
-;;----------------------------------------------------------
-(defun copy-line (arg)
-  "Copy lines (as many as prefix argument) in the kill ring"
-  (interactive "p")
-  (kill-ring-save (line-beginning-position)
-                  (line-beginning-position (+ 1 arg)))
-  (message "%d line%s copied" arg (if (= 1 arg) "" "s")))
-(defun quick-copy-line ()
-  "Copy the whole line that point is on and move to the beginning of the next line.
-    Consecutive calls to this command append each line to the
-    kill-ring."
-  (interactive)
-  (let ((beg (line-beginning-position 1))
-        (end (line-beginning-position 2)))
-    (if (eq last-command 'quick-copy-line)
-        (kill-append (buffer-substring beg end) (< end beg))
-      (kill-new (buffer-substring beg end))))
-  (beginning-of-line 1))
-(global-set-key (kbd "C-. d") 'diary)
-(global-set-key (kbd "C-. c") 'calendar)
-(global-set-key (kbd "C-c l") 'quick-copy-line)
-(global-set-key (kbd "C-, /") 'indent-whole-buffer)
-(global-set-key (kbd "C-c ;") 'comment-or-uncomment-region)
-(global-set-key (kbd "M-;") 'company-complete-common)
-(global-set-key (kbd "C-?") 'help-command)
-(global-set-key (kbd "M-?") 'mark-paragraph)
-(global-set-key (kbd "C-h") 'delete-backward-char)
-(global-set-key (kbd "M-h") 'backward-kill-word)
-(global-set-key (kbd "C-, SPC") 'just-one-space)
-
-(put 'dired-find-alternate-file 'disabled nil)
-
-(defun py-save-all-and-compile ()
-  (interactive)
-  (save-some-buffers 1)
-  (py-execute-buffer))
-(defun my-python-keys ()
-  (local-set-key (kbd "C-, C-c") 'py-save-all-and-compile)
-  )
-(add-hook 'python-mode-hook 'my-python-keys)
-
-
-;;----------------------------------------------------------
-;; ---- END GLOBAL KEYS ----
-;;----------------------------------------------------------
-
-
-;;----------------------------------------------------------
 ;; ---- BEGIN SMART PAREN ----
 ;;----------------------------------------------------------
 (require 'smartparens)
@@ -485,6 +441,77 @@
 ;; ---- END YASNIPPET ----
 ;;----------------------------------------------------------
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; auto-complete ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (add-hook 'python-mode-hook 'ac-anaconda-setup)
+;; ;;; auto complete mod
+;; ;;; should be loaded after yasnippet so that they can work together
+;; (require 'auto-complete-config)
+;; (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+;; (ac-config-default)
+;; ;;; set the trigger key so that it can work together with yasnippet on tab key,
+;; ;;; if the word exists in yasnippet, pressing tab will cause yasnippet to
+;; ;;; activate, otherwise, auto-complete will
+;; (ac-set-trigger-key "TAB")
+;; (ac-set-trigger-key "<tab>")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; company-mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-hook 'python-mode-hook 'company-mode)
+(eval-after-load 'company
+  (progn
+    '(add-to-list 'company-backends 'company-anaconda)
+    ))
+(global-set-key (kbd "M-;") 'company-complete-common)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; helm ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'helm-config) 
+(global-set-key (kbd "C-c h") 'helm-mini) 
+(global-set-key (kbd "M-x") 'helm-M-x) 
+(helm-mode 1)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; helm-swoop ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; helm from https://github.com/emacs-helm/helm
+(require 'helm)
+
+;; Locate the helm-swoop folder to your path
+(add-to-list 'load-path "~/.emacs.d/elisp/helm-swoop")
+(require 'helm-swoop)
+
+;; Change the keybinds to whatever you like :)
+(global-set-key (kbd "M-i") 'helm-swoop)
+(global-set-key (kbd "M-I") 'helm-swoop-back-to-last-point)
+(global-set-key (kbd "C-c M-i") 'helm-multi-swoop)
+(global-set-key (kbd "C-x M-i") 'helm-multi-swoop-all)
+
+;; When doing isearch, hand the word over to helm-swoop
+(define-key isearch-mode-map (kbd "M-i") 'helm-swoop-from-isearch)
+;; From helm-swoop to helm-multi-swoop-all
+(define-key helm-swoop-map (kbd "M-i") 'helm-multi-swoop-all-from-helm-swoop)
+;; When doing evil-search, hand the word over to helm-swoop
+;; (define-key evil-motion-state-map (kbd "M-i") 'helm-swoop-from-evil-search)
+
+;; Save buffer when helm-multi-swoop-edit complete
+(setq helm-multi-swoop-edit-save t)
+
+;; If this value is t, split window inside the current window
+(setq helm-swoop-split-with-multiple-windows nil)
+
+;; Split direcion. 'split-window-vertically or 'split-window-horizontally
+(setq helm-swoop-split-direction 'split-window-vertically)
+
+;; If nil, you can slightly boost invoke speed in exchange for text color
+(setq helm-swoop-speed-or-color nil)
+
+;; Optional face for each line number
+;; Face name is `helm-swoop-line-number-face`
+(setq helm-swoop-use-line-number-face t)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
 ;;;;;;;;;;;;;;;;;;;;  Transparency  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;(set-frame-parameter (selected-frame) 'alpha '(<active> [<inactive>]))
 (set-frame-parameter (selected-frame) 'alpha '(85 50))
@@ -502,7 +529,6 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;  jedi-emacs  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;(require 'auto-complete)
 ;; (setq jedi:server-args
 ;;       '("--sys-path" "/usr/lib/python3/dist-packages"
 ;;         "--sys-path" "/usr/local/lib/python3.3/dist-packages"))
@@ -552,3 +578,100 @@
 ;; (setq py-python-command-args '("--matplotlib" "--colors" "LightBG"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; undo-tree ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'undo-tree)
+(global-undo-tree-mode)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;----------------------------------------------------------
+;; ---- BEGIN GLOBAL KEYS ----
+;;----------------------------------------------------------
+(defun copy-line (arg)
+  "Copy lines (as many as prefix argument) in the kill ring"
+  (interactive "p")
+  (kill-ring-save (line-beginning-position)
+                  (line-beginning-position (+ 1 arg)))
+  (message "%d line%s copied" arg (if (= 1 arg) "" "s")))
+(defun quick-copy-line ()
+  "Copy the whole line that point is on and move to the beginning of the next line.
+    Consecutive calls to this command append each line to the
+    kill-ring."
+  (interactive)
+  (let ((beg (line-beginning-position 1))
+        (end (line-beginning-position 2)))
+    (if (eq last-command 'quick-copy-line)
+        (kill-append (buffer-substring beg end) (< end beg))
+      (kill-new (buffer-substring beg end))))
+  (beginning-of-line 1))
+(global-set-key (kbd "C-. d") 'diary)
+(global-set-key (kbd "C-. c") 'calendar)
+(global-set-key (kbd "C-c l") 'quick-copy-line)
+(global-set-key (kbd "C-, /") 'indent-whole-buffer)
+(global-set-key (kbd "C-c ;") 'comment-or-uncomment-region)
+(global-set-key (kbd "C-?") 'help-command)
+(global-set-key (kbd "M-?") 'mark-paragraph)
+(global-set-key (kbd "C-h") 'delete-backward-char)
+(global-set-key (kbd "M-h") 'backward-kill-word)
+(global-set-key (kbd "C-, SPC") 'just-one-space)
+
+;; better approach to bind keys - use a minor-mode
+(defvar my-keys-minor-mode-map (make-keymap) "my-keys-minor-mode keymap.")
+
+(define-key my-keys-minor-mode-map  (kbd "C-. d") 'diary)
+(define-key my-keys-minor-mode-map  (kbd "C-. c") 'calendar)
+(define-key my-keys-minor-mode-map  (kbd "C-c l") 'quick-copy-line)
+(define-key my-keys-minor-mode-map  (kbd "C-, /") 'indent-whole-buffer)
+(define-key my-keys-minor-mode-map  (kbd "C-c ;") 'comment-or-uncomment-region)
+(define-key my-keys-minor-mode-map  (kbd "C-?") 'help-command)
+(define-key my-keys-minor-mode-map  (kbd "M-?") 'mark-paragraph)
+(define-key my-keys-minor-mode-map  (kbd "C-h") 'delete-backward-char)
+(define-key my-keys-minor-mode-map  (kbd "M-h") 'backward-kill-word)
+(define-key my-keys-minor-mode-map  (kbd "C-, SPC") 'just-one-space)
+
+(define-minor-mode my-keys-minor-mode
+  "A minor mode so that my key settings override annoying major modes."
+  t " my-keys" 'my-keys-minor-mode-map)
+
+(my-keys-minor-mode 1)
+
+(defadvice load (after give-my-keybindings-priority)
+  "Try to ensure that my keybindings always have priority."
+  (if (not (eq (car (car minor-mode-map-alist)) 'my-keys-minor-mode))
+      (let ((mykeys (assq 'my-keys-minor-mode minor-mode-map-alist)))
+        (assq-delete-all 'my-keys-minor-mode minor-mode-map-alist)
+        (add-to-list 'minor-mode-map-alist mykeys))))
+(ad-activate 'load)
+
+;; (global-set-key (kbd "C-. d") 'diary)
+;; (global-set-key (kbd "C-. c") 'calendar)
+;; (global-set-key (kbd "C-c l") 'quick-copy-line)
+;; (global-set-key (kbd "C-, /") 'indent-whole-buffer)
+;; (global-set-key (kbd "C-c ;") 'comment-or-uncomment-region)
+;; (global-set-key (kbd "C-?") 'help-command)
+;; (global-set-key (kbd "M-?") 'mark-paragraph)
+;; (global-set-key (kbd "C-h") 'delete-backward-char)
+;; (global-set-key (kbd "M-h") 'backward-kill-word)
+;; (global-set-key (kbd "C-, SPC") 'just-one-space)
+
+(put 'dired-find-alternate-file 'disabled nil)
+
+(defun py-save-all-and-compile ()
+  (interactive)
+  (save-some-buffers 1)
+  (py-execute-buffer))
+(defun my-python-keys ()
+  (local-set-key (kbd "C-, C-c") 'py-save-all-and-compile)
+  )
+(add-hook 'python-mode-hook 'my-python-keys)
+
+
+;;----------------------------------------------------------
+;; ---- END GLOBAL KEYS ----
+;;----------------------------------------------------------
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; rainbow-delimiters ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+;; (add-hook 'LaTeX-mode-hook #'rainbow-delimiters-mode)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
