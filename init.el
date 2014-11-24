@@ -632,6 +632,7 @@
 (define-key my-keys-minor-mode-map (kbd "M-h") 'backward-kill-word)
 (define-key my-keys-minor-mode-map (kbd "C-, SPC") 'just-one-space)
 (define-key my-keys-minor-mode-map (kbd "M-y") 'helm-show-kill-ring)
+(define-key my-keys-minor-mode-map (kbd "C-. i") 'imenu)
 
 (define-minor-mode my-keys-minor-mode
   "A minor mode so that my key settings override annoying major modes."
