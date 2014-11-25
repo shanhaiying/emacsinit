@@ -5,3 +5,13 @@ sage
 sage
 sage
 sage
+ls
+sudo apt-get update
+sudo apt-get upgrade
+ls
+cd .emacs.d/
+git add -A
+git commit -m "elisp ac"
+quit
+q
+exit
