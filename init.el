@@ -28,6 +28,7 @@
 ;;         TeX-view-program-list)
 ;;   (push '(output-pdf "Okular") TeX-view-program-selection))
 
+(setq initial-major-mode 'text-mode)
 (setq visible-bell t)
 (setq split-width-threshold nil)
 (scroll-bar-mode 0)
@@ -663,7 +664,9 @@
     (if (eq last-command 'quick-copy-line)
         (kill-append (buffer-substring beg end) (< end beg))
       (kill-new (buffer-substring beg end))))
-  (beginning-of-line 1))
+  (message "current line copied")
+  ; (beginning-of-line 1)
+  )
 
 ;; better approach to bind keys - use a minor-mode
 (defvar my-keys-minor-mode-map (make-keymap) "my-keys-minor-mode keymap.")
