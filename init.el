@@ -671,7 +671,6 @@
 ;; better approach to bind keys - use a minor-mode
 (defvar my-keys-minor-mode-map (make-keymap) "my-keys-minor-mode keymap.")
 
-(define-key my-keys-minor-mode-map (kbd "C-. d") 'diary)
 (define-key my-keys-minor-mode-map (kbd "C-. c") 'calendar)
 (define-key my-keys-minor-mode-map (kbd "C-c l") 'quick-copy-line)
 (define-key my-keys-minor-mode-map (kbd "C-, C-/") 'indent-whole-buffer)
