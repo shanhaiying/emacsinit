@@ -1,12 +1,16 @@
-<<<<<<< HEAD
-((("merlin-company-backend" .
-   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("just" .
-   [1 0 0 0])
-  ("the" .
-=======
-((("Out" .
->>>>>>> 8d945ace7dce6eec3922d8ea406e7cbda5046036
+((("list-insert-nbsp" .
+   [0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0])
+  ("kbd" .
+   [2 0 0])
+  ("local-set-key" .
+   [0 0 0 0 0 2 0 0 0 0 0 0 0])
+  ("list-insert-br-and-two-nbsp" .
+   [0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("Markdown" .
+   [0 0 0 0 0 1 0 0])
+  ("my-markdown-keys" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])
+  ("Out" .
    [1 0 0])
   ("_2" .
    [1 0])
@@ -126,24 +130,25 @@
    [0 0 0 0 0 0 1 0 0 0])
   ("the" .
    [1 0 0])
-<<<<<<< HEAD
-  ("_2" .
-   [1 0])
-  ("Out" .
-   [1 0 0])
-  ("my-markdown-keys" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])
-  ("Markdown" .
-   [0 0 0 0 0 1 0 0])
-  ("list-insert-br-and-two-nbsp" .
-   [0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("local-set-key" .
-   [0 0 0 0 0 2 0 0 0 0 0 0 0])
-  ("kbd" .
-   [2 0 0])
-  ("list-insert-nbsp" .
-   [0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0])))
-=======
   ("just" .
-   [1 0 0 0])))
->>>>>>> 8d945ace7dce6eec3922d8ea406e7cbda5046036
+   [1 0 0 0])
+  ("merlin-company-backend" .
+   [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("defun" .
+   [1 0 0 0 0])
+  ("interactive" .
+   [0 0 0 0 0 0 0 0 0 1 0])
+  ("delete-trailing-whitespace" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0])
+  ("mark-paragraph" .
+   [0 0 0 0 0 0 0 1 0 0 0 0 0 0])
+  ("indent-region" .
+   [0 0 0 0 0 0 0 0 0 0 0 1 0])
+  ("region-end" .
+   [1 0 0 0 0 0 0 0 0 0])
+  ("define-key" .
+   [0 0 0 0 0 0 0 0 0 1])
+  ("my-keys-minor-mode-map" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0])
+  ("indent-current-paragraph" .
+   [0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0])))

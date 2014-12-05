@@ -648,6 +648,15 @@
   (delete-trailing-whitespace)
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
+(defun indent-current-paragraph ()
+  "indent current paragraph"
+  (interactive)
+  (save-excursion
+  ;; lisp code here involving moving cursor, mark, changing buffer.
+    (delete-trailing-whitespace)
+    (mark-paragraph)
+    (indent-region (region-beginning) (region-end) nil)))
+
 (defun copy-line (arg)
   "Copy lines (as many as prefix argument) in the kill ring"
   (interactive "p")
@@ -685,6 +694,7 @@
 (define-key my-keys-minor-mode-map (kbd "C-. n") 'neotree-toggle)
 (define-key my-keys-minor-mode-map (kbd "C-x C-f") 'helm-find-files)
 (define-key my-keys-minor-mode-map (kbd "C-. /") 'indent-region)
+(define-key my-keys-minor-mode-map (kbd "C-. C-/") 'indent-current-paragraph)
 
 (define-minor-mode my-keys-minor-mode
   "A minor mode so that my key settings override annoying major modes."
