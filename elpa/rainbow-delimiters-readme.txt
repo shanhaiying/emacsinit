@@ -8,14 +8,7 @@ Great care has been taken to make this mode fast. You shouldn't see
 any discernible change in scrolling or editing speed while using it,
 even in delimiter-rich languages like Clojure, Lisp, and Scheme.
 
-Installation:
-
-The recommended way is to use MELPA (http://melpa.org/) or MELPA Stable
-(http://stable.melpa.org/). If either is in your `package-archives', do
-  M-x package-install RET rainbow-delimiters RET
-Otherwise, open `rainbow-delimiters.el' in Emacs and use
-  M-x package-install-from-buffer
-Any other methods of installation are unsupported.
+Usage:
 
 To toggle the mode in the current buffer:
   M-x rainbow-delimiters-mode
