@@ -44,7 +44,7 @@
 ;;   (exec-path-from-shell-initialize))
 (let ((path (shell-command-to-string ". ~/.bashrc; echo -n $PATH")))
   (setenv "PATH" path)
-  (setq exec-path 
+  (setq exec-path
         (append
          (split-string-and-unquote path ":")
          exec-path)))
@@ -504,9 +504,9 @@
 ;; ---- BEGIN HELM ---------------------------------------------------------------------------------------------------------------------------
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
 
-(require 'helm-config) 
-(global-set-key (kbd "C-c h") 'helm-mini) 
-(global-set-key (kbd "M-x") 'helm-M-x) 
+(require 'helm-config)
+(global-set-key (kbd "C-c h") 'helm-mini)
+(global-set-key (kbd "M-x") 'helm-M-x)
 (helm-mode 1)
 (defun helm-sage-set-up ()
   (local-set-key (kbd "C-c C-i") 'helm-sage-shell)
@@ -811,20 +811,33 @@
 ;; ---- BEGIN OCAML --------------------------------------------------------------------------------------------------------------------------
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
 
-(add-hook 'tuareg-mode-hook 'merlin-mode t)
-(add-hook 'caml-mode-hook 'merlin-mode t)
-;; Use opam switch to lookup ocamlmerlin binary
-(setq merlin-command 'opam)
-; Make company aware of merlin
-; (add-to-list 'company-backends 'merlin-company-backend)
-(eval-after-load 'company
-  (progn
-    '(add-to-list 'company-backends 'merlin-company-backend)
-    ))
-; Enable company on merlin managed buffers
+(add-hook 'tuareg-mode-hook 'tuareg-imenu-set-imenu)
+(setq auto-mode-alist
+      (append '(("\\.ml[ily]?$" . tuareg-mode)
+                ("\\.topml$" . tuareg-mode))
+              auto-mode-alist)) 
+(autoload 'utop-setup-ocaml-buffer "utop" "Toplevel for OCaml" t)
+(add-hook 'tuareg-mode-hook 'utop-setup-ocaml-buffer)
+(add-hook 'tuareg-mode-hook 'merlin-mode)
 (add-hook 'merlin-mode-hook 'company-mode)
+(setq merlin-error-after-save nil)
+(setq opam-share (substring (shell-command-to-string "opam config var share") 0 -1))
+(add-to-list 'load-path (concat opam-share "/emacs/site-lisp"))
+(add-hook 'tuareg-mode-hook 'merlin-mode)
+;; (add-hook 'tuareg-mode-hook 'merlin-mode t)
+;; (add-hook 'caml-mode-hook 'merlin-mode t)
+;; ;; Use opam switch to lookup ocamlmerlin binary
+;; (setq merlin-command 'opam)
+;; 					; Make company aware of merlin
+;; 					; (add-to-list 'company-backends 'merlin-company-backend)
+;; (eval-after-load 'company
+;;   (progn
+;;     '(add-to-list 'company-backends 'merlin-company-backend)
+;;     ))
+;; 					; Enable company on merlin managed buffers
+(add-to-list 'load-path "/home/xin/.opam/4.02.1/share/emacs/site-lisp")
+(require 'ocp-indent)
 
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
 ;; ---- END OCAML ----------------------------------------------------------------------------------------------------------------------------
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
-
