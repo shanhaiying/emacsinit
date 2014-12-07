@@ -131,6 +131,8 @@
 (global-set-key [f9] 'toggle-tool-bar-mode-from-frame)
 (global-set-key (kbd "C-<tab>") 'next-buffer)
 (global-set-key (kbd "s-<tab>") 'previous-buffer)
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-set-key (kbd "C-r") 'isearch-backward-regexp)
 
 
 (require 'ess-site)

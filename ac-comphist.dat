@@ -1,7 +1,11 @@
-((("list-insert-nbsp" .
+((("isearch" .
+   [0 0 0 0 0 0 1])
+  ("global-set-key" .
+   [0 0 0 0 0 0 0 0 0 0 1 0 0 1])
+  ("list-insert-nbsp" .
    [0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0])
   ("kbd" .
-   [2 0 0])
+   [4 0 0])
   ("local-set-key" .
    [0 0 0 0 0 2 0 0 0 0 0 0 0])
   ("list-insert-br-and-two-nbsp" .
