@@ -407,6 +407,18 @@
   (sp-local-pair "'" "'" :actions '(insert wrap))
   )
 
+(sp-with-modes '(sage-mode)
+  (sp-local-pair "(" ")" :actions '(insert wrap))
+  (sp-local-pair "\"" "\"" :actions '(insert wrap))
+  (sp-local-pair "'" "'" :actions '(insert wrap))
+  )
+
+(sp-with-modes '(sage-shell-mode)
+  (sp-local-pair "(" ")" :actions '(insert wrap))
+  (sp-local-pair "\"" "\"" :actions '(insert wrap))
+  (sp-local-pair "'" "'" :actions '(insert wrap))
+  )
+
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
 ;; ---- END SMART PAREN ----------------------------------------------------------------------------------------------------------------------
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
