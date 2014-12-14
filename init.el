@@ -68,12 +68,6 @@
 (package-initialize)
 (global-linum-mode t)
                                         ;(hlinum-activate)
-(autoload 'python-mode "python-mode" "Python Mode." t)
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-(add-to-list 'interpreter-mode-alist '("python" . python-mode))
-(add-hook 'python-mode-hook 'anaconda-mode)
-                                        ;(add-hook 'python-mode-hook 'ac-anaconda-setup)
-(add-hook 'python-mode-hook 'eldoc-mode)
 (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
 
 
@@ -502,7 +496,6 @@
 ;; ---- BEGIN COMPANY-MODE -------------------------------------------------------------------------------------------------------------------
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
 
-(add-hook 'python-mode-hook 'company-mode)
 (eval-after-load 'company
   (progn
     '(add-to-list 'company-backends 'company-anaconda)
@@ -625,6 +618,13 @@
 (setq python-shell-virtualenv-path "/home/xin/anaconda")
 (setq pdb-path '/home/xin/anaconda/lib/python3.4/pdb.py
       gud-pdb-command-name (symbol-name pdb-path))
+(autoload 'python-mode "python-mode" "Python Mode." t)
+(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+(add-to-list 'interpreter-mode-alist '("python" . python-mode))
+(add-hook 'python-mode-hook 'company-mode)
+(add-hook 'python-mode-hook 'anaconda-mode)
+                                        ;(add-hook 'python-mode-hook 'ac-anaconda-setup)
+(add-hook 'python-mode-hook 'eldoc-mode)
 ;; (setq-default py-shell-name "ipython")
 ;; (setq-default py-which-bufname "IPython")
 ;;                                         ; switch to the interpreter after executing code
@@ -862,6 +862,7 @@
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
 
 (add-to-list 'auto-mode-alist '("\\.rkt$" . racket-mode))
+(add-hook 'racket-mode 'company-mode)
 (defun my-Racket-keys ()
   (local-set-key (kbd "C-, C-c") 'racket-run))
 (add-hook 'racket-mode-hook 'my-Racket-keys)
