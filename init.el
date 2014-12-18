@@ -42,12 +42,17 @@
 
 ;; (when window-system
 ;;   (exec-path-from-shell-initialize))
-(let ((path (shell-command-to-string ". ~/.bashrc; echo -n $PATH")))
-  (setenv "PATH" path)
-  (setq exec-path
-        (append
-         (split-string-and-unquote path ":")
-         exec-path)))
+;; (let ((path (shell-command-to-string ". ~/.bashrc; echo -n $PATH")))
+;;   (setenv "PATH" path)
+;;   (setq exec-path
+;;         (append
+;;          (split-string-and-unquote path ":")
+;;          exec-path)))
+
+(setq exec-path
+      (append
+       (split-string-and-unquote (getenv "PATH") ":")
+       exec-path))
 
 (add-to-list 'load-path "/home/xin/.emacs.d/")
 (add-to-list 'load-path "/home/xin/.emacs.d/elpa/smartparens-1.6.1/")
