@@ -49,10 +49,15 @@
 ;;          (split-string-and-unquote path ":")
 ;;          exec-path)))
 
-(setq exec-path
-      (append
-       (split-string-and-unquote (getenv "PATH") ":")
-       exec-path))
+;; (setq exec-path
+;;       (append
+;;        (split-string-and-unquote (getenv "PATH") ":")
+;;        exec-path))
+
+;; (add-to-list 'exec-path "~/anaconda/bin")
+;; (add-to-list 'exec-path "~/julia")
+;; (add-to-list 'exec-path "~/racket/bin")
+;; (add-to-list 'exec-path "~/.opam/4.02.1/bin")
 
 (add-to-list 'load-path "/home/xin/.emacs.d/")
 (add-to-list 'load-path "/home/xin/.emacs.d/elpa/smartparens-1.6.1/")
