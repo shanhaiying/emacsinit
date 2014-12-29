@@ -632,6 +632,7 @@
 (add-hook 'python-mode-hook 'anaconda-mode)
                                         ;(add-hook 'python-mode-hook 'ac-anaconda-setup)
 (add-hook 'python-mode-hook 'eldoc-mode)
+
 ;; (setq-default py-shell-name "ipython")
 ;; (setq-default py-which-bufname "IPython")
 ;;                                         ; switch to the interpreter after executing code
@@ -857,6 +858,11 @@
 ;; 					; Enable company on merlin managed buffers
 (add-to-list 'load-path "/home/xin/.opam/4.02.1/share/emacs/site-lisp")
 (require 'ocp-indent)
+(fset 'Printf-printf
+   [?P ?r ?i ?n ?t ?f ?. ?p ?r ?i ?n ?t ?f ?  ?\" ?^ backspace ?% ?s ?\\ ?n ?\C-e ?  ?\( ?d ?u ?m ?p ?  tab])
+(defun my-OCaml-keys ()
+  (local-set-key (kbd "C-, p") 'Printf-printf))
+(add-hook 'tuareg-mode-hook 'my-OCaml-keys)
 
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
 ;; ---- END OCAML ----------------------------------------------------------------------------------------------------------------------------
