@@ -833,6 +833,7 @@
 ;; ---- BEGIN OCAML --------------------------------------------------------------------------------------------------------------------------
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
 
+(setq opam-share (substring (shell-command-to-string "opam config var share 2> /dev/null") 0 -1))
 (add-hook 'tuareg-mode-hook 'tuareg-imenu-set-imenu)
 (setq auto-mode-alist
       (append '(("\\.ml[ily]?$" . tuareg-mode)
@@ -843,12 +844,11 @@
 (add-hook 'tuareg-mode-hook 'merlin-mode)
 (add-hook 'merlin-mode-hook 'company-mode)
 (setq merlin-error-after-save nil)
-(setq opam-share (substring (shell-command-to-string "opam config var share") 0 -1))
 (add-to-list 'load-path (concat opam-share "/emacs/site-lisp"))
 ;; (add-hook 'tuareg-mode-hook 'merlin-mode t)
-;; (add-hook 'caml-mode-hook 'merlin-mode t)
-;; ;; Use opam switch to lookup ocamlmerlin binary
-;; (setq merlin-command 'opam)
+(add-hook 'caml-mode-hook 'merlin-mode t)
+;; Use opam switch to lookup ocamlmerlin binary
+(setq merlin-command 'opam)
 ;; 					; Make company aware of merlin
 ;; 					; (add-to-list 'company-backends 'merlin-company-backend)
 ;; (eval-after-load 'company
