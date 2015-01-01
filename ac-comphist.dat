@@ -1,4 +1,8 @@
-((("ipython" .
+((("merlin-packages" .
+   [0 0 0 0 0 0 0 0 0 0 1 0 0 0 0])
+  ("merlin-mode" .
+   [1 0 0 0 0 0 0 0 0 0 0])
+  ("ipython" .
    [1 0 0 0 0 0 0])
   ("company-robe" .
    [1 0 0 0 0 0 0 0 0 0 0 0])
@@ -151,7 +155,7 @@
   ("defun" .
    [1 0 0 0 0])
   ("interactive" .
-   [0 0 0 0 0 0 0 0 0 1 0])
+   [0 0 0 0 0 0 0 1 0 1 0])
   ("delete-trailing-whitespace" .
    [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0])
   ("mark-paragraph" .
@@ -179,4 +183,12 @@
   ("tuareg-mode" .
    [0 0 0 0 0 0 1 0 0 0 0])
   ("Printf-printf" .
-   [0 0 0 0 0 0 1 0 0 0 0 0 0])))
+   [0 0 0 0 0 0 1 0 0 0 0 0 0])
+  ("merlin-use" .
+   [2 0 0 0 0 0 0 0 0 0])
+  ("apply" .
+   [1 0 0 0 0])
+  ("merlin" .
+   [0 0 0 0 0 1])
+  ("merlin-mode-hook" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])))
