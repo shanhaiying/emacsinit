@@ -869,7 +869,8 @@
 (fset 'Printf-printf
       [?P ?r ?i ?n ?t ?f ?. ?p ?r ?i ?n ?t ?f ?  ?\" ?^ backspace ?% ?s ?\\ ?n ?\C-e ?  ?\( ?d ?u ?m ?p ?  tab])
 (defun my-OCaml-keys ()
-  (local-set-key (kbd "C-, p") 'Printf-printf))
+  (local-set-key (kbd "C-, p") 'Printf-printf)
+  (local-set-key (kbd "C-. C-r") 'tuareg-eval-region))
 (add-hook 'tuareg-mode-hook 'my-OCaml-keys)
 
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
