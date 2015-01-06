@@ -86,7 +86,7 @@
 
 (push '(direx:direx-mode :position left :width 25 :dedicated t)
       popwin:special-display-config)
-(global-set-key (kbd "C-x C-j") 'direx:jump-to-directory-other-window)
+
 
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
 ;; ---- BEGIN THEME --------------------------------------------------------------------------------------------------------------------------
@@ -717,6 +717,9 @@
 (define-key my-keys-minor-mode-map (kbd "C-x C-f") 'helm-find-files)
 (define-key my-keys-minor-mode-map (kbd "C-. /") 'indent-region)
 (define-key my-keys-minor-mode-map (kbd "C-. C-/") 'indent-current-paragraph)
+(define-key my-keys-minor-mode-map (kbd "C-x C-j") 'direx:jump-to-directory-other-window)
+(define-key my-keys-minor-mode-map (kbd "C-+") 'e2wm:start-management)
+(define-key my-keys-minor-mode-map (kbd "C--") 'e2wm:stop-management)
 
 (define-minor-mode my-keys-minor-mode
   "A minor mode so that my key settings override annoying major modes."
@@ -731,17 +734,6 @@
         (assq-delete-all 'my-keys-minor-mode minor-mode-map-alist)
         (add-to-list 'minor-mode-map-alist mykeys))))
 (ad-activate 'load)
-
-;; (global-set-key (kbd "C-. d") 'diary)
-;; (global-set-key (kbd "C-. c") 'calendar)
-;; (global-set-key (kbd "C-c l") 'quick-copy-line)
-;; (global-set-key (kbd "C-, /") 'indent-whole-buffer)
-;; (global-set-key (kbd "C-c ;") 'comment-or-uncomment-region)
-;; (global-set-key (kbd "C-?") 'help-command)
-;; (global-set-key (kbd "M-?") 'mark-paragraph)
-;; (global-set-key (kbd "C-h") 'delete-backward-char)
-;; (global-set-key (kbd "M-h") 'backward-kill-word)
-;; (global-set-key (kbd "C-, SPC") 'just-one-space)
 
 (put 'dired-find-alternate-file 'disabled nil)
 

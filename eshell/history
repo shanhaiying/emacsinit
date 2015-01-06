@@ -16,3 +16,11 @@ quit
 q
 exit
 ssh xinj@corn.stanford.edu
+g++ test.cpp
+a.out
+./a.out
+g++ test.cpp
+ls
+opile 60.ml
+quit
+exit
