@@ -727,6 +727,7 @@
 (define-key my-keys-minor-mode-map (kbd "C-c C-, h") 'e2wm:dp-code-navi-history-command)
 (define-key my-keys-minor-mode-map (kbd "C-c C-, l") 'e2wm:dp-code-navi-left-command)
 (define-key my-keys-minor-mode-map (kbd "C-c C-, r") 'e2wm:dp-code-navi-right-command)
+(define-key my-keys-minor-mode-map (kbd "C-c C-, k") 'e2wm:dp-code-sub-toggle-command)
 
 (define-minor-mode my-keys-minor-mode
   "A minor mode so that my key settings override annoying major modes."
@@ -970,11 +971,36 @@
              sub)))
 
 ;; (setq e2wm:c-code-winfo
-;;       '((:name main)
-;;         (:name files   :plugin e2wm-direx)
-;;         (:name history :plugin history-list)
-;;         (:name imenu   :plugin imenu :default-hide nil)
-;;         (:name sub     :buffer "*info*" :default-hide t)))
+;; 			   '((:name main)
+;; 			     (:name files   :plugin files)
+;; 			     (:name history :plugin history-list)
+;; 			     (:name imenu   :plugin imenu :default-hide nil)
+;; 			     (:name sub     :buffer "*Python3*" :default-hide t)))
+
+;; (e2wm:pst-class-register
+;;  (make-e2wm:$pst-class
+;;   :name 'pcode
+;;   :extend 'base
+;;   :title "Coding"
+;;   :init 'e2wm:dp-pcode-init
+;;   :main 'main
+;;   :switch 'e2wm:dp-code-switch
+;;   :popup 'e2wm:dp-code-popup
+;;   :after-bury 'e2wm:dp-code-after-bury
+;;   :keymap 'e2wm:dp-code-minor-mode-map))
+
+;; (defun e2wm:dp-pcode-init ()
+;;   (let*
+;;       ((code-wm
+;; 	(wlf:no-layout
+;; 	 e2wm:python-code-recipe
+;; 	 e2wm:python-code-winfo))
+;;        (buf (or e2wm:prev-selected-buffer
+;; 		(e2wm:history-get-main-buffer))))
+;;     (when (e2wm:history-recordable-p e2wm:prev-selected-buffer)
+;;       (e2wm:history-add e2wm:prev-selected-buffer))
+;;     (wlf:set-buffer code-wm 'main buf)
+;;     code-wm))
 
 ;; (eval-after-load "e2wm:def-plugin-files-mode"
 ;; '(defvar e2wm:def-plugin-files-mode-map

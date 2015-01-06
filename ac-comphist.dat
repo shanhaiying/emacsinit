@@ -1,4 +1,8 @@
-((("merlin-mode-hook" .
+((("lambda" .
+   [1 0 0 0 0 0])
+  ("python-mode-hook" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0])
+  ("merlin-mode-hook" .
    [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
   ("merlin" .
    [0 0 0 0 0 1])
@@ -19,7 +23,7 @@
   ("racket-mode" .
    [0 0 0 0 0 0 0 0 0 0 1])
   ("add-hook" .
-   [2 0 0 0 0 0 1 0])
+   [2 0 0 0 0 0 2 0])
   ("indent-current-paragraph" .
    [0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
   ("my-keys-minor-mode-map" .
