@@ -720,6 +720,13 @@
 (define-key my-keys-minor-mode-map (kbd "C-x C-j") 'direx:jump-to-directory-other-window)
 (define-key my-keys-minor-mode-map (kbd "C-+") 'e2wm:start-management)
 (define-key my-keys-minor-mode-map (kbd "C-_") 'e2wm:stop-management)
+(define-key my-keys-minor-mode-map (kbd "C-c C-, m") 'e2wm:dp-code-navi-main-command)
+(define-key my-keys-minor-mode-map (kbd "C-c C-, f") 'e2wm:dp-code-navi-files-command)
+(define-key my-keys-minor-mode-map (kbd "C-c C-, i") 'e2wm:dp-code-navi-imenu-command)
+(define-key my-keys-minor-mode-map (kbd "C-c C-, s") 'e2wm:dp-code-navi-sub-command)
+(define-key my-keys-minor-mode-map (kbd "C-c C-, h") 'e2wm:dp-code-navi-history-command)
+(define-key my-keys-minor-mode-map (kbd "C-c C-, l") 'e2wm:dp-code-navi-left-command)
+(define-key my-keys-minor-mode-map (kbd "C-c C-, r") 'e2wm:dp-code-navi-right-command)
 
 (define-minor-mode my-keys-minor-mode
   "A minor mode so that my key settings override annoying major modes."
@@ -958,16 +965,26 @@
           (- (:upper-size-ratio 0.6)
              files history)
           (- (:lower-max-size 150)
-             (| (:right-max-size 40)
+             (| (:right-max-size 20)
                 main imenu)
              sub)))
 
 ;; (setq e2wm:c-code-winfo
 ;;       '((:name main)
-;;         (:name files   :plugin direx)
+;;         (:name files   :plugin e2wm-direx)
 ;;         (:name history :plugin history-list)
 ;;         (:name imenu   :plugin imenu :default-hide nil)
 ;;         (:name sub     :buffer "*info*" :default-hide t)))
+
+;; (eval-after-load "e2wm:def-plugin-files-mode"
+;; '(defvar e2wm:def-plugin-files-mode-map
+;; (e2wm:define-keymap
+;; '(
+;; ("u" . e2wm:def-plugin-files-open-updir-command)
+;; ))))
+
+(add-hook 'e2wm:def-plugin-files-mode-hook
+          (lambda () (local-set-key (kbd "u") 'e2wm:def-plugin-files-updir-command)))
 
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
 ;; ---- END E2WM -----------------------------------------------------------------------------------------------------------------------------
