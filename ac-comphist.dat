@@ -19,7 +19,7 @@
   ("racket-mode" .
    [0 0 0 0 0 0 0 0 0 0 1])
   ("add-hook" .
-   [1 0 0 0 0 0 0 0])
+   [2 0 0 0 0 0 1 0])
   ("indent-current-paragraph" .
    [0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
   ("my-keys-minor-mode-map" .
@@ -191,4 +191,10 @@
   ("merlin-mode" .
    [1 0 0 0 0 0 0 0 0 0 0])
   ("merlin-packages" .
-   [0 0 0 0 0 0 0 0 0 0 1 0 0 0 0])))
+   [0 0 0 0 0 0 0 0 0 0 1 0 0 0 0])
+  ("irony-mode-hook" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 1 0 1])
+  ("eldoc-mode" .
+   [0 0 0 1 0 0 0 0 0 0])
+  ("irony-mode" .
+   [0 0 0 0 0 0 0 1 0 0])))
