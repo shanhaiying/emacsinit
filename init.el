@@ -1034,6 +1034,12 @@
 (global-set-key "\C-cb" 'org-iswitchb)
 (add-to-list 'load-path "~/Dropbox/org/")
 (load-library "org-global-todo")
+(add-hook 'org-mode-hook
+          (lambda ()
+            (local-set-key (kdb "C-. C-d") 'org-deadline)))
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "|" "DONE(d)")
+	(sequence "|" "RESCHEDULED(r)" "CANCELED(c)")))
 
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
 ;; ---- END ORG ------------------------------------------------------------------------------------------------------------------------------
