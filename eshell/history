@@ -24,3 +24,11 @@ ls
 opile 60.ml
 quit
 exit
+g++ test.cpp
+opile test.ml
+opile test.ml
+opile test.ml
+opile test.ml
+f
+quit
+exit

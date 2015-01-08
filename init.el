@@ -964,21 +964,23 @@
 ;; ---- BEGIN E2WM ---------------------------------------------------------------------------------------------------------------------------
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
 
+;(require 'e2wm-direx)
+
 (setq e2wm:c-code-recipe
       '(| (:left-max-size 20)
           (- (:upper-size-ratio 0.6)
-             tree history)
+             files history)
           (- (:lower-max-size 150)
              (| (:right-max-size 20)
                 main imenu)
              sub)))
 
-(setq e2wm:c-code-winfo
-      '((:name main)
-	(:name tree   :plugin direx)
-	(:name history :plugin history-list)
-	(:name imenu   :plugin imenu :default-hide nil)
-	(:name sub     :buffer "*info*" :default-hide t)))
+;; (setq e2wm:c-code-winfo
+;;       '((:name main)
+;; 	(:name files   :plugin files)
+;; 	(:name history :plugin history-list)
+;; 	(:name imenu   :plugin imenu :default-hide nil)
+;; 	(:name sub     :buffer "*info*" :default-hide t)))
 
 ;; (e2wm:pst-class-register
 ;;  (make-e2wm:$pst-class
@@ -1014,7 +1016,6 @@
 
 (add-hook 'e2wm:def-plugin-files-mode-hook
           (lambda () (local-set-key (kbd "u") 'e2wm:def-plugin-files-updir-command)))
-(setq e2wm:debug t)
 
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
 ;; ---- END E2WM -----------------------------------------------------------------------------------------------------------------------------
