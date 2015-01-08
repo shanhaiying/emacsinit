@@ -504,10 +504,11 @@
 
 (eval-after-load 'company
   (progn
-    '(add-to-list 'company-backends 'company-anaconda)
+    ;'(add-to-list 'company-backends 'company-anaconda)
     '(push 'company-robe company-backends)
     ))
-(global-set-key (kbd "M-;") 'company-complete-common)
+(add-hook 'company-mode-hook
+          (lambda () (local-set-key (kbd "M-;") 'company-complete-common)))
 
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
 ;; ---- END COMPANY-MODE ---------------------------------------------------------------------------------------------------------------------
@@ -628,7 +629,8 @@
 (autoload 'python-mode "python-mode" "Python Mode." t)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
-(add-hook 'python-mode-hook 'company-mode)
+;(add-hook 'python-mode-hook 'company-mode)
+(add-hook 'python-mode-hook 'ac-anaconda-setup)
 (add-hook 'python-mode-hook 'anaconda-mode)
                                         ;(add-hook 'python-mode-hook 'ac-anaconda-setup)
 (add-hook 'python-mode-hook 'eldoc-mode)
@@ -845,6 +847,7 @@
 (autoload 'utop-setup-ocaml-buffer "utop" "Toplevel for OCaml" t)
 (add-hook 'tuareg-mode-hook 'utop-setup-ocaml-buffer)
 (add-hook 'tuareg-mode-hook 'merlin-mode)
+;(setq merlin-use-auto-complete-mode 'easy)
 (add-hook 'merlin-mode-hook 'company-mode)
 (setq merlin-error-after-save nil)
 (add-to-list 'load-path (concat opam-share "/emacs/site-lisp"))
@@ -859,10 +862,10 @@
 (add-hook 'merlin-mode-hook 'merlin-packages)
 ;; 					; Make company aware of merlin
 ;; 					; (add-to-list 'company-backends 'merlin-company-backend)
-;; (eval-after-load 'company
-;;   (progn
-;;     '(add-to-list 'company-backends 'merlin-company-backend)
-;;     ))
+(eval-after-load 'company
+  (progn
+    '(add-to-list 'company-backends 'merlin-company-backend)
+    ))
 ;; 					; Enable company on merlin managed buffers
 (add-to-list 'load-path "/home/xin/.opam/4.02.1/share/emacs/site-lisp")
 (require 'ocp-indent)
@@ -964,18 +967,18 @@
 (setq e2wm:c-code-recipe
       '(| (:left-max-size 20)
           (- (:upper-size-ratio 0.6)
-             files history)
+             tree history)
           (- (:lower-max-size 150)
              (| (:right-max-size 20)
                 main imenu)
              sub)))
 
-;; (setq e2wm:c-code-winfo
-;; 			   '((:name main)
-;; 			     (:name files   :plugin files)
-;; 			     (:name history :plugin history-list)
-;; 			     (:name imenu   :plugin imenu :default-hide nil)
-;; 			     (:name sub     :buffer "*Python3*" :default-hide t)))
+(setq e2wm:c-code-winfo
+      '((:name main)
+	(:name tree   :plugin direx)
+	(:name history :plugin history-list)
+	(:name imenu   :plugin imenu :default-hide nil)
+	(:name sub     :buffer "*info*" :default-hide t)))
 
 ;; (e2wm:pst-class-register
 ;;  (make-e2wm:$pst-class
@@ -1011,7 +1014,26 @@
 
 (add-hook 'e2wm:def-plugin-files-mode-hook
           (lambda () (local-set-key (kbd "u") 'e2wm:def-plugin-files-updir-command)))
+(setq e2wm:debug t)
 
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
 ;; ---- END E2WM -----------------------------------------------------------------------------------------------------------------------------
+;;--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+;;--------------------------------------------------------------------------------------------------------------------------------------------
+;; ---- BEGIN ORG ----------------------------------------------------------------------------------------------------------------------------
+;;--------------------------------------------------------------------------------------------------------------------------------------------
+
+(setq org-log-done 'time)
+;; The following lines are always needed.  Choose your own keys.
+(add-hook 'org-mode-hook 'turn-on-font-lock) ; not needed when global-font-lock-mode is on
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
+(add-to-list 'load-path "~/Dropbox/org/")
+(load-library "org-global-todo")
+
+;;--------------------------------------------------------------------------------------------------------------------------------------------
+;; ---- END ORG ------------------------------------------------------------------------------------------------------------------------------
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
