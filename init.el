@@ -490,8 +490,10 @@
 ;; ;;; set the trigger key so that it can work together with yasnippet on tab key,
 ;; ;;; if the word exists in yasnippet, pressing tab will cause yasnippet to
 ;; ;;; activate, otherwise, auto-complete will
-;; (ac-set-trigger-key "TAB")
-;; (ac-set-trigger-key "<tab>")
+(ac-set-trigger-key "TAB")
+(ac-set-trigger-key "<tab>")
+(define-key ac-mode-map (kbd "M-;") 'auto-complete)
+(setq ac-auto-start nil)
 
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
 ;; ---- END AUTO-COMPLETE --------------------------------------------------------------------------------------------------------------------
@@ -735,8 +737,6 @@
   "A minor mode so that my key settings override annoying major modes."
   t " my-keys" 'my-keys-minor-mode-map)
 
-(my-keys-minor-mode 1)
-
 (defadvice load (after give-my-keybindings-priority)
   "Try to ensure that my keybindings always have priority."
   (if (not (eq (car (car minor-mode-map-alist)) 'my-keys-minor-mode))
@@ -744,6 +744,8 @@
         (assq-delete-all 'my-keys-minor-mode minor-mode-map-alist)
         (add-to-list 'minor-mode-map-alist mykeys))))
 (ad-activate 'load)
+
+(my-keys-minor-mode 1)
 
 (put 'dired-find-alternate-file 'disabled nil)
 
@@ -1036,7 +1038,7 @@
 (load-library "org-global-todo")
 (add-hook 'org-mode-hook
           (lambda ()
-            (local-set-key (kdb "C-. C-d") 'org-deadline)))
+            (local-set-key "\C-cp" 'org-deadline)))
 (setq org-todo-keywords
       '((sequence "TODO(t)" "|" "DONE(d)")
 	(sequence "|" "RESCHEDULED(r)" "CANCELED(c)")))

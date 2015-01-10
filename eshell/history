@@ -32,3 +32,65 @@ opile test.ml
 f
 quit
 exit
+opile touchpad_toggle.ml 
+./touchpad_toggle.native 
+opile touchpad_toggle.ml 
+./touchpad_toggle.native 
+opile touchpad_toggle.ml 
+./touchpad_toggle.native 
+utop
+exit
+ls
+opile touchpad_toggle.ml
+opile touchpad_toggle.ml
+opile touchpad_toggle.ml
+./touchpad_toggle.native 
+./touchpad_toggle.native 
+./touchpad_toggle.native 
+./touchpad_toggle.native 
+opile touchpad_toggle.ml
+opile 59.ml
+opile 59.ml
+opile 59.ml
+opile 59.ml
+opile 59.ml
+opile 59.ml
+opile 59.ml
+opile 59.ml
+opile 59.ml
+opile 59.ml
+opile 59.ml
+./59.native 
+./59.native 
+opile 59.ml
+./59.native 
+opile 59.ml
+./59.native 
+opile 59.ml
+./59.native 
+opile 59.ml
+opile 59.ml
+./59.native 
+opile 59.ml
+./59.native 
+opile 59.ml
+./59.native 
+opile 59.ml
+./59.native 
+opile 59.ml
+./59.native 
+opile 59.ml
+./59.native 
+opile 59.ml
+./59.native 
+opile 59.ml
+opile 59.ml
+opile 59.ml
+opile 59.ml
+opile 59.ml
+./59.native 
+opile 59.ml
+./59.native 
+opile 59.ml
+./59.native 
+exit
