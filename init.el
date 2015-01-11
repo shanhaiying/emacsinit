@@ -520,8 +520,6 @@
   (progn					;'(add-to-list 'company-backends 'company-anaconda)
     '(push 'company-robe company-backends)
   ))
-
-;; (global-unset-key "\M-'")
 (defun my-company-setting ()
   (local-set-key (kbd "M-;") 'company-complete-common)
   (local-set-key (kbd "M-'") 'company-complete-selection))
