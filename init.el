@@ -521,7 +521,7 @@
     '(push 'company-robe company-backends)
   ))
 
-(global-unset-key "\M-'")
+;; (global-unset-key "\M-'")
 (defun my-company-setting ()
   (local-set-key (kbd "M-;") 'company-complete-common)
   (local-set-key (kbd "M-'") 'company-complete-selection))
@@ -747,6 +747,7 @@
 (define-key my-keys-minor-mode-map (kbd "C-c C-, l") 'e2wm:dp-code-navi-left-command)
 (define-key my-keys-minor-mode-map (kbd "C-c C-, r") 'e2wm:dp-code-navi-right-command)
 (define-key my-keys-minor-mode-map (kbd "C-c C-, k") 'e2wm:dp-code-sub-toggle-command)
+(define-key my-keys-minor-mode-map (kbd "C-, '") 'comment-dwim)
 
 (define-minor-mode my-keys-minor-mode
   "A minor mode so that my key settings override annoying major modes."
