@@ -213,4 +213,12 @@
   ("sequence" .
    [1 0 0 0 0 0 0 0])
   ("LaTeX" .
-   [0 0 0 1 0])))
+   [0 0 0 1 0])
+  ("company-complete-" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("company-complete-common" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0])
+  ("company-complete-selection" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("ac-set-trigger-key" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])))

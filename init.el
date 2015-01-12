@@ -483,6 +483,7 @@
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
 
 (require 'auto-complete)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (eval-after-load "auto-complete"
   '(setq ac-modes (append '(sage-shell-mode sage-shell:sage-mode) ac-modes)))
 (add-hook 'sage-shell:sage-mode-hook 'ac-sage-setup)
@@ -496,8 +497,8 @@
 ;; ;;; auto complete mod
 ;; ;;; should be loaded after yasnippet so that they can work together
 ;; (require 'auto-complete-config)
-;; (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 ;; (ac-config-default)
+;; (global-auto-complete-mode)
 ;; ;;; set the trigger key so that it can work together with yasnippet on tab key,
 ;; ;;; if the word exists in yasnippet, pressing tab will cause yasnippet to
 ;; ;;; activate, otherwise, auto-complete will
@@ -1059,4 +1060,21 @@
 
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
 ;; ---- END ORG ------------------------------------------------------------------------------------------------------------------------------
+;;--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+;;--------------------------------------------------------------------------------------------------------------------------------------------
+;; ---- BEGIN R ------------------------------------------------------------------------------------------------------------------------------
+;;--------------------------------------------------------------------------------------------------------------------------------------------
+
+;; (require 'ess-eldoc)
+(add-hook 'ess-mode-hook 'eldoc-mode)
+(setq ess-eval-visibly-p nil)
+(setq ess-use-auto-complete t)
+(add-to-list 'auto-mode-alist '("\\.r$" . R-mode))
+(add-hook 'ess-mode-hook 'auto-complete-mode)
+(add-hook 'inferior-ess-mode-hook 'auto-complete-mode)
+
+;;--------------------------------------------------------------------------------------------------------------------------------------------
+;; ---- END R --------------------------------------------------------------------------------------------------------------------------------
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
