@@ -71,7 +71,6 @@
 ;; (add-to-list 'exec-path "~/.opam/4.02.1/bin")
 
 (add-to-list 'load-path "/home/xin/.emacs.d/")
-(add-to-list 'load-path "/home/xin/.emacs.d/elpa/smartparens-1.6.1/")
 (add-to-list 'load-path "/home/xin/.emacs.d/maxframe.el/")
 (add-to-list 'load-path "/home/xin/.emacs.d/yasnippet-master/")
 
@@ -406,23 +405,23 @@
 ;; ---- BEGIN SMART PAREN --------------------------------------------------------------------------------------------------------------------
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
 
-(require 'smartparens)
+(require 'smartparens-config)
                                         ;(require 'smartparens-latex)
 (smartparens-global-mode 1)
                                         ;(sp-local-pair 'LaTeX-mode "\\\\left(" "\\\\right)" :insert "C-, C-p" :trigger)
                                         ;(require 'smartparens-config)
                                         ;(sp-pair "(" ")" :wrap "C-(")
-(sp-pair "'" nil :actions :rem)
-(sp-with-modes '(
-                 tex-mode
-                 plain-tex-mode
-                 latex-mode
-                 )
-  (sp-local-pair "\\[" "\\]" :actions '(insert wrap))
-  (sp-local-pair "$" "$")
-                                        ;  (sp-local-pair "\{" nil :actions :rem)
-  (sp-local-pair "\\{" "\\}" :actions '(insert))
-  )
+;; (sp-pair "'" nil :actions :rem)
+;; (sp-with-modes '(
+;;                  teX-mode
+;;                  plain-tex-mode
+;;                  latex-mode
+;;                  )
+;;   (sp-local-pair "\\[" "\\]" :actions '(insert wrap))
+;;   (sp-local-pair "$" "$")
+;;                                         ;  (sp-local-pair "\{" nil :actions :rem)
+;;   (sp-local-pair "\\{" "\\}" :actions '(insert))
+;;   )
 
 (sp-with-modes '(python-mode)
   (sp-local-pair "(" ")" :actions '(insert wrap))
