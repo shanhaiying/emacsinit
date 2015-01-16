@@ -405,23 +405,23 @@
 ;; ---- BEGIN SMART PAREN --------------------------------------------------------------------------------------------------------------------
 ;;--------------------------------------------------------------------------------------------------------------------------------------------
 
-(require 'smartparens-config)
+;; (require 'smartparens-config)
                                         ;(require 'smartparens-latex)
 (smartparens-global-mode 1)
                                         ;(sp-local-pair 'LaTeX-mode "\\\\left(" "\\\\right)" :insert "C-, C-p" :trigger)
                                         ;(require 'smartparens-config)
                                         ;(sp-pair "(" ")" :wrap "C-(")
-;; (sp-pair "'" nil :actions :rem)
-;; (sp-with-modes '(
-;;                  teX-mode
-;;                  plain-tex-mode
-;;                  latex-mode
-;;                  )
-;;   (sp-local-pair "\\[" "\\]" :actions '(insert wrap))
-;;   (sp-local-pair "$" "$")
-;;                                         ;  (sp-local-pair "\{" nil :actions :rem)
-;;   (sp-local-pair "\\{" "\\}" :actions '(insert))
-;;   )
+(sp-pair "'" nil :actions :rem)
+(sp-with-modes '(
+                 teX-mode
+                 plain-tex-mode
+                 latex-mode
+                 )
+  (sp-local-pair "\\[" "\\]" :actions '(insert wrap))
+  (sp-local-pair "$" "$")
+                                        ;  (sp-local-pair "\{" nil :actions :rem)
+  (sp-local-pair "\\{" "\\}" :actions '(insert))
+  )
 
 (sp-with-modes '(python-mode)
   (sp-local-pair "(" ")" :actions '(insert wrap))
