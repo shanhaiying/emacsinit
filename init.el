@@ -326,7 +326,6 @@
 (fset 'insert-documentclassxin
       [?\\ ?d ?o ?c ?u ?m ?e ?n ?t ?c ?l ?a ?s ?s ?\{ ?\} left ?x ?i ?n ?-])
 
-
 (defun my-LaTeX-keys ()
   (local-set-key (kbd "C-{") 'insert-twosided-brackets)
   (local-set-key (kbd "C-, f") 'insert-frac)
@@ -352,7 +351,8 @@
   (local-set-key (kbd "C-, C-i") 'insert-textit)
   (local-set-key (kbd "C-, C-t") 'insert-text)
   (local-set-key (kbd "C-. C-d") 'insert-documentclass)
-  (local-set-key (kbd "C-. d") 'insert-documentclassxin))
+  (local-set-key (kbd "C-. d") 'insert-documentclassxin)
+)
 
 (add-hook 'LaTeX-mode-hook 'my-LaTeX-keys)
 
@@ -715,6 +715,9 @@
   ; (beginning-of-line 1)
   )
 
+(fset 'insert-grouping-brackets
+   [?\{ ?\C-j ?\C-j tab ?\C-p tab])
+
 ;; better approach to bind keys - use a minor-mode
 (defvar my-keys-minor-mode-map (make-keymap) "my-keys-minor-mode keymap.")
 
@@ -745,6 +748,7 @@
 (define-key my-keys-minor-mode-map (kbd "C-c C-, r") 'e2wm:dp-code-navi-right-command)
 (define-key my-keys-minor-mode-map (kbd "C-c C-, k") 'e2wm:dp-code-sub-toggle-command)
 (define-key my-keys-minor-mode-map (kbd "C-, '") 'comment-dwim)
+(define-key my-keys-minor-mode-map (kbd "C-, {") 'insert-grouping-brackets)
 
 (define-minor-mode my-keys-minor-mode
   "A minor mode so that my key settings override annoying major modes."
