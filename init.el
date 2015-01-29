@@ -113,7 +113,7 @@
  '(powerline-active2 ((t (:inherit mode-line :background "grey34"))))
  '(mode-line ((t (:background "grey34" :box nil))))
  )
-(set-face-attribute 'default nil :height 115)
+(set-face-attribute 'default nil :height 120)
 ;;(defun toggle-fullscreen ()
 ;;  (interactive)
 ;;  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
