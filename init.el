@@ -489,6 +489,7 @@
 (add-hook 'sage-shell:sage-mode-hook 'auto-complete-mode)
 (add-hook 'sage-shell-mode-hook 'auto-complete-mode)
 (add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
+(add-hook 'LaTeX-mode-hook 'auto-complete-mode)
 (define-key ac-completing-map [return] nil)
 (define-key ac-completing-map "\r" nil)
 ;; (add-hook 'python-mode-hook 'ac-anaconda-setup)
